@@ -1,0 +1,30 @@
+{
+  "name": "Transform30 — The Hunter System",
+  "short_name": "Transform30",
+  "description": "Solo Leveling inspired 30-Day Transformation System. 26 Workout Days, 4 Rest Days, Indian High-Protein Diet, Annoying Hunter Alarms.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#02040b",
+  "theme_color": "#00d4ff",
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icons/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+}

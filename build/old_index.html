@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Transform30 — 30-Day Extreme Transformation Planner (Gym + Home, Diet, Tracker)</title>
+<meta name="description" content="A research-backed 30-day transformation program with one rest day every week. Gym and home workout versions for every day, personalised diet macros, safety precautions, progress tracking. Works offline and saves to your browser.">
+<meta name="theme-color" content="#0b0a14">
+<style>
+:root{
+  --bg:hsl(252 32% 6%);
+  --bg2:hsl(252 28% 9%);
+  --card:hsl(252 24% 12% / .72);
+  --card-solid:hsl(252 24% 12%);
+  --line:hsl(252 20% 22% / .8);
+  --txt:hsl(250 30% 96%);
+  --mut:hsl(250 14% 68%);
+  --a1:hsl(268 92% 68%);
+  --a2:hsl(158 84% 52%);
+  --a3:hsl(20 96% 62%);
+  --a4:hsl(205 95% 62%);
+  --bad:hsl(0 88% 66%);
+  --warn:hsl(42 96% 58%);
+  --r:18px;
+  --shadow:0 10px 40px -12px hsl(268 90% 40% / .45);
+  font-family:"Inter","SF Pro Display",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:
+    radial-gradient(900px 500px at 10% -10%, hsl(268 90% 30% / .55), transparent 60%),
+    radial-gradient(800px 500px at 100% 0%, hsl(158 80% 25% / .35), transparent 60%),
+    radial-gradient(700px 600px at 50% 110%, hsl(20 90% 30% / .25), transparent 60%),
+    var(--bg);
+  background-attachment:fixed;
+  color:var(--txt);min-height:100vh;line-height:1.5;
+  -webkit-font-smoothing:antialiased;padding-bottom:110px;
+}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer;border:0;background:none}
+a{color:var(--a4)}
+.wrap{max-width:1040px;margin:0 auto;padding:0 16px}
+
+/* header */
+.top{position:sticky;top:0;z-index:30;backdrop-filter:blur(18px) saturate(1.4);background:hsl(252 32% 6% / .72);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;gap:14px;padding-top:12px;padding-bottom:12px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px;margin-right:auto}
+.logo{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;font-size:20px;background:linear-gradient(135deg,var(--a1),var(--a3));box-shadow:var(--shadow)}
+h1{font-size:1.15rem;letter-spacing:-.02em;font-weight:800}
+h1 small{display:block;font-size:.68rem;font-weight:500;color:var(--mut);letter-spacing:.04em;text-transform:uppercase}
+.chip{padding:6px 12px;border-radius:999px;background:hsl(252 24% 16%);border:1px solid var(--line);font-size:.8rem;font-weight:600;white-space:nowrap}
+.seg{display:inline-flex;background:hsl(252 24% 14%);border:1px solid var(--line);border-radius:999px;padding:3px}
+.seg button{padding:6px 14px;border-radius:999px;font-size:.82rem;font-weight:700;color:var(--mut);transition:.25s}
+.seg button.on{background:linear-gradient(135deg,var(--a1),hsl(290 85% 60%));color:#fff;box-shadow:0 4px 16px -4px var(--a1)}
+.seg.home button.on{background:linear-gradient(135deg,var(--a2),hsl(180 80% 42%));color:#052;box-shadow:0 4px 16px -4px var(--a2)}
+nav.tabs{position:sticky;top:63px;z-index:25;backdrop-filter:blur(16px);background:hsl(252 32% 6% / .6)}
+nav.tabs .wrap{display:flex;gap:6px;overflow-x:auto;padding-top:8px;padding-bottom:8px;scrollbar-width:none}
+nav.tabs button{padding:9px 16px;border-radius:12px;font-weight:700;font-size:.86rem;color:var(--mut);white-space:nowrap;transition:.2s}
+nav.tabs button:hover{color:var(--txt);background:hsl(252 24% 14%)}
+nav.tabs button.on{color:#fff;background:linear-gradient(135deg,hsl(268 70% 40%),hsl(268 60% 28%));box-shadow:inset 0 0 0 1px hsl(268 90% 68% / .5)}
+
+/* cards */
+main{padding-top:18px;animation:fade .45s ease}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:18px;margin-bottom:16px;backdrop-filter:blur(10px)}
+.card h2{font-size:1.1rem;margin-bottom:4px;letter-spacing:-.01em}
+.card h3{font-size:.95rem;margin:14px 0 6px}
+.sub{color:var(--mut);font-size:.86rem}
+.grid{display:grid;gap:14px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(190px,1fr))}
+.g4{grid-template-columns:repeat(auto-fit,minmax(130px,1fr))}
+.hero{display:grid;grid-template-columns:auto 1fr;gap:22px;align-items:center;background:linear-gradient(135deg,hsl(268 60% 20% / .8),hsl(252 30% 11% / .8) 55%,hsl(158 50% 14% / .7));border-color:hsl(268 60% 40% / .5)}
+.ring{width:132px;height:132px;position:relative}
+.ring svg{transform:rotate(-90deg)}
+.ring .v{position:absolute;inset:0;display:grid;place-content:center;text-align:center;font-weight:800;font-size:1.7rem}
+.ring .v small{display:block;font-size:.65rem;font-weight:600;color:var(--mut);text-transform:uppercase;letter-spacing:.08em}
+.stat{background:hsl(252 24% 10% / .7);border:1px solid var(--line);border-radius:14px;padding:12px 14px}
+.stat b{display:block;font-size:1.45rem;letter-spacing:-.02em}
+.stat span{font-size:.72rem;color:var(--mut);text-transform:uppercase;letter-spacing:.07em;font-weight:600}
+.badge{display:inline-block;padding:3px 10px;border-radius:999px;font-size:.7rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase}
+.b1{background:hsl(268 80% 60% / .2);color:hsl(268 100% 80%)}
+.b2{background:hsl(158 80% 50% / .18);color:hsl(158 90% 70%)}
+.b3{background:hsl(20 95% 60% / .2);color:hsl(20 100% 74%)}
+.b4{background:hsl(205 95% 60% / .2);color:hsl(205 100% 78%)}
+.bw{background:hsl(42 95% 55% / .2);color:hsl(42 100% 72%)}
+.bd{background:hsl(0 90% 60% / .2);color:hsl(0 100% 78%)}
+
+.btn{padding:10px 16px;border-radius:12px;font-weight:700;font-size:.88rem;background:hsl(252 24% 18%);border:1px solid var(--line);transition:.2s}
+.btn:hover{transform:translateY(-1px);border-color:var(--a1)}
+.btn.pri{background:linear-gradient(135deg,var(--a1),hsl(300 80% 58%));border:0;box-shadow:var(--shadow)}
+.btn.ok{background:linear-gradient(135deg,var(--a2),hsl(180 80% 40%));color:#032;border:0}
+.btn.danger{border-color:hsl(0 80% 50% / .5);color:var(--bad)}
+.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.sp{flex:1}
+
+/* inputs */
+label.f{display:flex;flex-direction:column;gap:5px;font-size:.74rem;color:var(--mut);font-weight:700;text-transform:uppercase;letter-spacing:.06em}
+input[type=text],input[type=number],input[type=date],select,textarea{width:100%;background:hsl(252 28% 8%);border:1px solid var(--line);border-radius:10px;padding:9px 11px;font-size:.92rem;text-transform:none;letter-spacing:0;font-weight:500;color:var(--txt);outline:0;transition:.2s}
+input:focus,select:focus,textarea:focus{border-color:var(--a1);box-shadow:0 0 0 3px hsl(268 90% 68% / .2)}
+textarea{min-height:64px;resize:vertical}
+input[type=checkbox]{accent-color:var(--a2);width:18px;height:18px}
+
+/* exercise */
+.ex{background:hsl(252 26% 9% / .75);border:1px solid var(--line);border-radius:16px;padding:14px;margin-bottom:12px;transition:.25s}
+.ex.done{border-color:hsl(158 70% 45% / .6);background:hsl(158 40% 9% / .6)}
+.ex-h{display:flex;gap:12px;align-items:flex-start}
+.num{min-width:30px;height:30px;border-radius:10px;display:grid;place-items:center;font-weight:800;font-size:.85rem;background:linear-gradient(135deg,var(--a1),var(--a3))}
+.ex h4{font-size:1rem}
+.meta{font-size:.8rem;color:var(--a2);font-weight:700}
+.tip{font-size:.82rem;color:var(--mut);margin:6px 0 8px 42px}
+.sets{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 8px 42px;align-items:center}
+.setb{width:44px;height:44px;border-radius:12px;border:1.5px solid var(--line);font-weight:800;background:hsl(252 28% 8%);transition:.2s}
+.setb:hover{border-color:var(--a2);transform:scale(1.06)}
+.setb.on{background:linear-gradient(135deg,var(--a2),hsl(180 80% 40%));color:#032;border-color:transparent;box-shadow:0 4px 14px -4px var(--a2)}
+.ex .load{margin-left:42px;width:calc(100% - 42px)}
+.tech{margin:4px 0 4px 42px;font-size:.78rem;color:hsl(20 100% 74%)}
+.progbar{height:8px;border-radius:99px;background:hsl(252 24% 16%);overflow:hidden}
+.progbar i{display:block;height:100%;background:linear-gradient(90deg,var(--a1),var(--a2));border-radius:99px;transition:width .4s}
+details{border:1px solid var(--line);border-radius:14px;padding:12px 14px;margin-bottom:12px;background:hsl(252 24% 10% / .5)}
+summary{cursor:pointer;font-weight:700;list-style:none;display:flex;align-items:center;gap:8px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"＋";margin-left:auto;color:var(--mut)}
+details[open] summary::after{content:"－"}
+details ul,.card ul.l{padding-left:20px;margin-top:8px}
+li{margin:4px 0;font-size:.9rem}
+.note{padding:12px 14px;border-radius:12px;font-size:.86rem;margin:10px 0;border:1px solid}
+.note.w{background:hsl(42 90% 50% / .1);border-color:hsl(42 90% 55% / .4)}
+.note.b{background:hsl(0 90% 55% / .1);border-color:hsl(0 90% 60% / .4)}
+.note.g{background:hsl(158 80% 45% / .1);border-color:hsl(158 80% 50% / .4)}
+.note.i{background:hsl(205 90% 55% / .1);border-color:hsl(205 90% 60% / .4)}
+
+/* plan grid */
+.days{display:grid;grid-template-columns:repeat(auto-fill,minmax(112px,1fr));gap:10px}
+.day{border:1px solid var(--line);background:hsl(252 24% 10% / .75);border-radius:14px;padding:11px;text-align:left;transition:.2s;position:relative}
+.day:hover{transform:translateY(-3px);border-color:var(--a1)}
+.day .n{font-weight:800;font-size:1.1rem}
+.day .t{font-size:.72rem;color:var(--mut);font-weight:600}
+.day .e{font-size:1.4rem;position:absolute;right:10px;top:8px}
+.day.done{border-color:hsl(158 70% 45% / .7);background:hsl(158 40% 10% / .7)}
+.day.today{box-shadow:0 0 0 2px var(--a3)}
+.day.rest{background:hsl(42 40% 10% / .7);border-color:hsl(42 80% 50% / .5)}
+.day.sel{outline:2px solid var(--a1)}
+.day .ck{position:absolute;right:9px;bottom:7px;color:var(--a2);font-weight:900}
+
+table{width:100%;border-collapse:collapse;font-size:.84rem}
+th,td{padding:8px 8px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{color:var(--mut);font-size:.7rem;text-transform:uppercase;letter-spacing:.07em}
+.tw{overflow-x:auto}
+td input{min-width:70px;padding:6px 8px}
+
+/* floating */
+#timer{position:fixed;left:50%;bottom:18px;transform:translate(-50%,140%);z-index:50;transition:.35s;background:hsl(252 30% 12% / .95);border:1px solid var(--a1);border-radius:18px;padding:12px 18px;display:flex;align-items:center;gap:14px;box-shadow:var(--shadow);min-width:260px;backdrop-filter:blur(14px)}
+#timer.show{transform:translate(-50%,0)}
+#timer .tt{font-size:1.7rem;font-weight:800;font-variant-numeric:tabular-nums}
+#timer .progbar{flex:1}
+#toast{position:fixed;top:80px;right:16px;z-index:60;display:flex;flex-direction:column;gap:8px}
+.toast{background:hsl(252 30% 14%);border:1px solid var(--a2);padding:10px 16px;border-radius:12px;font-size:.86rem;animation:fade .3s;box-shadow:var(--shadow)}
+.big{font-size:2rem;font-weight:800;letter-spacing:-.03em;background:linear-gradient(135deg,var(--a2),var(--a4));-webkit-background-clip:text;background-clip:text;color:transparent}
+.legend span{display:inline-flex;align-items:center;gap:6px;margin-right:14px;font-size:.78rem;color:var(--mut)}
+.legend i{width:10px;height:10px;border-radius:3px;display:inline-block}
+@media(max-width:640px){
+  .hero{grid-template-columns:1fr;justify-items:center;text-align:center}
+  nav.tabs{top:104px}
+}
+@media print{.top,nav.tabs,#timer,.btn{display:none}}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <div class="brand">
+      <div class="logo">⚡</div>
+      <h1>Transform30<small>30-day · 1 rest day / week · gym + home</small></h1>
+    </div>
+    <span class="chip" id="chipDay">Day 1 / 30</span>
+    <div class="seg" id="gmode" role="group" aria-label="Default training location">
+      <button data-a="gmode" data-m="gym" id="gm-gym">🏋️ Gym</button>
+      <button data-a="gmode" data-m="home" id="gm-home">🏠 Home</button>
+    </div>
+  </div>
+</header>
+<nav class="tabs"><div class="wrap" id="nav">
+  <button data-a="nav" data-v="today">🔥 Today</button>
+  <button data-a="nav" data-v="plan">🗓️ 30-Day Plan</button>
+  <button data-a="nav" data-v="diet">🥗 Diet</button>
+  <button data-a="nav" data-v="progress">📈 Progress</button>
+  <button data-a="nav" data-v="guide">🛡️ Safety &amp; Research</button>
+</div></nav>
+<div class="wrap"><main id="app" aria-live="polite"></main></div>
+
+<div id="timer" role="timer"><div class="tt" id="tt">0:00</div><div class="progbar"><i id="tbar" style="width:0"></i></div><button class="btn" data-a="skiptimer">Skip</button></div>
+<div id="toast"></div>
+
+<script>
+'use strict';
+/* ============================================================
+   DATA — workouts (gym + home), phases, food, research
+   ============================================================ */
+const X=(n,s,r,rest,tip,c)=>({n,s,r,rest,tip,c:!!c});
+
+const WORKOUTS={
+push:{title:'Push — Chest · Shoulders · Triceps',emoji:'💪',short:'Push',
+ gym:[
+  X('Barbell Bench Press',4,'6-8',120,'Shoulder blades pinched, feet planted, bar to lower chest, 2-second lowering.',1),
+  X('Incline Dumbbell Press',3,'8-10',90,'30° bench. Full stretch at the bottom, no bouncing.',1),
+  X('Seated Dumbbell Shoulder Press',3,'8-10',90,'Ribs down, glutes tight, avoid over-arching.'),
+  X('Cable Fly / Pec Deck',3,'12-15',60,'Squeeze 1 s at peak, slow controlled stretch.'),
+  X('Dumbbell Lateral Raise',4,'15-20',45,'Lead with elbows, stop at shoulder height, no swinging.'),
+  X('Rope Triceps Pushdown',3,'10-12',60,'Elbows pinned to ribs, spread rope at bottom.'),
+  X('Overhead Triceps Extension',2,'12-15',60,'Deep stretch on the long head of triceps.')],
+ home:[
+  X('Feet-Elevated Push-Up',4,'8-15',90,'Feet on a chair, 3-s lowering. Load a backpack once 15 reps feel easy.',1),
+  X('Pike Push-Up',3,'6-12',90,'Hips high; head travels between hands. Elevate feet to progress.',1),
+  X('Diamond Push-Up',3,'8-12',75,'Hands under chest; elbows tucked. Drop to knees only if form breaks.'),
+  X('Chair / Bench Dips',3,'10-20',60,'Shoulders down and back; do not sink too deep.'),
+  X('Bottle / Backpack Lateral Raise',4,'15-25',45,'Use water jugs or a loaded backpack held by the strap.'),
+  X('Slow-Tempo Push-Up (4 s down)',3,'8-12',60,'Pause 1 s at the bottom. Pure time-under-tension.'),
+  X('Counter Triceps Extension',2,'10-15',60,'Hands on a sturdy counter/table edge, lower head toward hands.')]},
+pull:{title:'Pull — Back · Biceps · Rear Delts',emoji:'🧗',short:'Pull',
+ gym:[
+  X('Pull-Up (assisted/weighted) or Lat Pulldown',4,'6-10',120,'Start each rep by pulling elbows to hips; full hang at the bottom.',1),
+  X('Barbell / Chest-Supported Row',4,'8-10',90,'Flat back, squeeze shoulder blades together at the top.',1),
+  X('Seated Cable Row',3,'10-12',75,'Neutral grip; avoid leaning back to cheat.'),
+  X('Face Pull',3,'15-20',45,'Rope to forehead, externally rotate at the end.'),
+  X('Straight-Arm Pulldown',2,'12-15',60,'Feel the lats stretch and contract; arms nearly straight.'),
+  X('Incline Dumbbell Curl',3,'10-12',60,'Deep stretch at the bottom, no swinging.'),
+  X('Hammer Curl',3,'10-12',60,'Neutral grip hits brachialis and forearms.')],
+ home:[
+  X('Pull-Up / Chin-Up (door bar) or Towel Door Row',4,'max-2',120,'No bar? Close a door, wrap a towel around both handles, lean back and row.',1),
+  X('Backpack Bent-Over Row',4,'10-15',75,'Hinge to ~45°, backpack loaded with books/water. Squeeze back 1 s.',1),
+  X('Table / Inverted Row',3,'8-15',75,'Only under a very sturdy table. Heels on floor, body straight.'),
+  X('Prone Y-T-W Raise',3,'10-12',45,'Lie face down on floor. Lift arms into Y, T then W shapes.'),
+  X('Backpack Biceps Curl',3,'12-15',60,'Hold backpack by the handle/strap, keep elbows fixed.'),
+  X('Towel Isometric Curl',3,'20-30 s',45,'Stand on a towel, pull up on it as hard as possible without moving.'),
+  X('Superman Hold',3,'30-40 s',45,'Lift chest and legs, squeeze glutes and back; breathe steadily.')]},
+legs:{title:'Legs — Quads · Glutes · Calves',emoji:'🦵',short:'Legs',
+ gym:[
+  X('Barbell Back Squat',4,'6-8',150,'Brace the core, knees track over toes, hit at least parallel depth.',1),
+  X('Leg Press',3,'10-12',100,'Feet shoulder-width; do not lock knees at the top.',1),
+  X('Romanian Deadlift',3,'8-10',100,'Push hips back, soft knees, bar close to legs.'),
+  X('Walking Lunge',3,'12 / leg',75,'Long stride, upright torso.'),
+  X('Leg Extension',3,'12-15',60,'Squeeze at the top for 1 s.'),
+  X('Standing Calf Raise',4,'12-20',45,'Full stretch at the bottom, pause at the top.')],
+ home:[
+  X('Bulgarian Split Squat (backpack)',4,'8-12 / leg',90,'Rear foot on a chair; most of the weight on the front leg.',1),
+  X('Backpack Goblet Squat (3-1-1 tempo)',4,'12-20',75,'Hold backpack on chest, 3-s down, 1-s pause, drive up fast.',1),
+  X('Single-Leg Romanian Deadlift',3,'10-12 / leg',75,'Hinge on one leg, keep hips square to the floor.'),
+  X('Reverse Lunge',3,'12 / leg',60,'Step back, drop the back knee close to the floor.'),
+  X('Wall Sit',3,'45-60 s',60,'Thighs parallel to the floor; add a backpack on thighs.'),
+  X('Single-Leg Calf Raise',4,'15-25',45,'On a stair edge. Full range, pause on top.')]},
+cond:{title:'Conditioning + Core — Fat Burn Day',emoji:'🔥',short:'HIIT + Core',
+ gym:[
+  X('Interval Rounds: Bike / Rower / Treadmill',6,'30 s hard / 90 s easy',0,'Hard = ~9/10 effort. Easy = slow pedalling/walking. Rounds scale by phase.',1),
+  X('Sled Push or Battle Ropes',4,'30 s',60,'All-out for 30 s, then rest fully.',1),
+  X('Cable Crunch',3,'12-15',45,'Curl the ribcage to the pelvis, do not pull with arms.'),
+  X('Hanging Leg Raise',3,'10-15',45,'No swinging; tilt pelvis up at the top.'),
+  X('Ab Wheel Rollout',3,'8-12',45,'Stop where the lower back starts to sag.'),
+  X('Pallof Press',3,'10 / side',45,'Resist rotation; slow press, 1-s hold.'),
+  X('Easy Zone-2 Walk / Incline Treadmill',1,'15 min',0,'Conversational pace; helps recovery and steps.')],
+ home:[
+  X('Tabata Block A: Burpees / Mountain Climbers',6,'20 s on / 10 s off',60,'Pick 2 moves, alternate each round. Rounds scale by phase.',1),
+  X('Tabata Block B: High Knees / Skater Hops',4,'30 s on / 15 s off',60,'Quiet landings, stay light on the feet.',1),
+  X('Dead Bug',3,'10 / side',45,'Lower back pressed into the floor throughout.'),
+  X('Bicycle Crunch',3,'20-30',45,'Slow and controlled; rotate the torso, not just the elbows.'),
+  X('Hollow Body Hold',3,'20-40 s',45,'Ribs down, lower back flat; bend knees to make it easier.'),
+  X('Reverse Crunch',3,'12-15',45,'Curl hips off the floor; no momentum.'),
+  X('Easy Walk / Stair Climb',1,'15 min',0,'Conversational pace. Helps recovery and step count.')]},
+upper:{title:'Upper Hypertrophy — Shoulders · Arms · V-Taper',emoji:'🏋️',short:'Upper',
+ gym:[
+  X('Standing Overhead Press',4,'6-8',120,'Squeeze glutes, head through at the top, bar over mid-foot.',1),
+  X('Weighted Dips (chest lean)',3,'8-12',90,'Lean forward slightly; stop if shoulders pinch.',1),
+  X('One-Arm Dumbbell / T-Bar Row',3,'10-12',75,'Pull toward hip, avoid twisting.'),
+  X('Cable Lateral Raise',4,'15-20',45,'Constant tension; light and strict.'),
+  X('Reverse Pec Deck',3,'15-20',45,'Lead with the elbows; no shrugging.'),
+  X('EZ-Bar Curl',3,'8-12',60,'Elbows fixed, squeeze at the top.'),
+  X('Close-Grip Bench / Skull Crusher',3,'8-12',75,'Lower to forehead/chest slowly; elbows narrow.')],
+ home:[
+  X('Pike Push-Up (feet elevated)',4,'6-12',90,'Elevate feet on a chair; head between hands; strict shoulders-over-wrists.',1),
+  X('Archer Push-Up',3,'6-10 / side',90,'Shift weight to one arm; the other arm stays straight.',1),
+  X('Backpack Row (heavy)',4,'10-15',75,'Pause 1 s at the top. Use the heaviest backpack you can control.'),
+  X('Bottle Lateral Raise',4,'15-25',45,'Slow lowering over 3 s; no momentum.'),
+  X('Bent-Over Reverse Fly',3,'15-20',45,'Bottles or light backpack; squeeze shoulder blades.'),
+  X('Backpack Curl',3,'10-15',60,'Slow 3-s lowering; elbows fixed.'),
+  X('Bench Dips (feet elevated)',3,'AMRAP',60,'Last set to technical failure.')]},
+post:{title:'Posterior Chain — Hamstrings · Glutes · Back',emoji:'🦿',short:'Posterior',
+ gym:[
+  X('Conventional / Trap-Bar Deadlift',4,'4-6',180,'Flat back, push the floor away; reset every rep.',1),
+  X('Barbell Hip Thrust',4,'8-12',90,'Chin tucked, pause at lockout, avoid hyper-extending the lower back.',1),
+  X('Bulgarian Split Squat',3,'8-10 / leg',90,'Slight forward lean to bias glutes.'),
+  X('Lying / Seated Leg Curl',3,'10-15',60,'Slow 3-s lowering.'),
+  X('45° Back Extension',3,'12-15',60,'Round-free neutral spine; squeeze glutes at the top.'),
+  X('Seated Calf Raise',4,'12-20',45,'Full range, 1-s pause at the stretch.')],
+ home:[
+  X('Single-Leg Hip Thrust (backpack)',4,'10-15 / leg',75,'Shoulders on a couch/chair, drive through the heel.',1),
+  X('Single-Leg Romanian Deadlift (backpack)',4,'8-12 / leg',75,'Hinge slowly; stay balanced, hips level.',1),
+  X('Assisted Nordic Hamstring Curl',3,'5-8',90,'Anchor heels under a couch. Lower as slowly as possible, push off the floor to return.'),
+  X('Towel Slider Hamstring Curl',3,'10-15',60,'Heels on towel on a smooth floor; hips high.'),
+  X('Backpack Good Morning',3,'12-15',60,'Neutral spine; stop when hamstrings are stretched.'),
+  X('Glute Bridge March',3,'12 / leg',45,'Keep hips level while alternately lifting each foot.'),
+  X('Single-Leg Calf Raise',4,'15-25',45,'Slow, full range.')]}
+};
+const CYCLE=['push','pull','legs','cond','upper','post'];
+const WARM={
+ push:['2 min jump rope / jumping jacks','Arm circles ×10 each way','Band-free scapular push-ups ×10','Light ramp-up set (≈50% load × 10, ≈70% × 5)'],
+ pull:['2 min light cardio','Cat-cow ×10','Scapular pull-ups / dead hangs 2×20 s','Ramp-up set (≈50% × 10, ≈70% × 5)'],
+ legs:['3 min bike/brisk walk','Bodyweight squat ×15','Leg swings ×10/leg','Hip 90/90 switches ×8','Ramp-up set (≈50% × 8, ≈70% × 4)'],
+ cond:['3 min easy jog / jump rope','High knees 2×20 s','World\'s-greatest-stretch ×5/side','1 progressive 20-s fast burst'],
+ upper:['2 min jump rope','Shoulder dislocates with towel ×10','Push-up ×8 slow','Ramp-up set for the first lift'],
+ post:['3 min bike/brisk walk','Glute bridge ×15','Hip hinge drill (dowel/bottle) ×12','Bird dog ×8/side','Ramp-up set (≈50% × 6, ≈70% × 3)']};
+const COOL=['5 min easy walk to bring heart-rate down','Static stretch of the trained muscles: 2 × 30 s each','Slow nasal breathing 2 min (4 s in / 6 s out)','Protein + carbs within ~2 h (see Diet tab)'];
+const MOBILITY=['Cat-cow ×10','Child\'s pose 45 s','90/90 hip switches ×8/side','Thoracic rotations ×8/side','Couch stretch 40 s/side','Hamstring floss 8/side','Deep breathing 2 min'];
+const REST_PLAN=[
+ 'Sleep target 8–9 h tonight; lights out early.',
+ 'Easy 30–40 min walk (outdoors if possible) — no intensity.',
+ '15 min full-body mobility + foam rolling (use the mobility list).',
+ 'Eat at maintenance calories today (see Diet tab), carbs slightly higher.',
+ 'Hydrate: 35–40 ml/kg body weight; add a pinch of salt in one drink.',
+ 'Take progress photos + review your week; plan meals for the next days.',
+ 'No lifting, no HIIT. This is your weekly rest day: it prevents overreaching and is when you actually grow.'];
+const P=[
+ {id:1,name:'Phase 1 · Foundation',days:'Days 1–7',rir:'3 reps in reserve (RPE 7)',tempo:'3-1-1',cls:'b2',note:'Groove perfect technique and establish loads. One fewer set than the full plan.'},
+ {id:2,name:'Phase 2 · Build',days:'Days 8–14',rir:'2 reps in reserve (RPE 8)',tempo:'2-1-1',cls:'b4',note:'Full prescribed volume. Add 1–2 reps or 2–5% load versus last week.'},
+ {id:3,name:'Phase 3 · Overload',days:'Days 15–21',rir:'1 rep in reserve (RPE 8–9)',tempo:'2-0-1',cls:'b3',note:'+1 set on the big compound lifts. Push loads.'},
+ {id:4,name:'Phase 4 · Peak',days:'Days 22–30',rir:'0–1 reps in reserve (RPE 9)',tempo:'2-0-1',cls:'b1',note:'+1 set on compounds, plus a drop-set / rest-pause on the last set of isolation moves.'}];
+/* One rest day per week: Days 7, 14, 21, 28. The other six days of each week run the 6-session cycle. */
+const isRest=d=>d%7===0&&d<=28;
+const phaseOf=d=>isRest(d)?null:d<=7?P[0]:d<=14?P[1]:d<=21?P[2]:P[3];
+const typeOf=d=>{if(isRest(d))return 'rest';const i=(d-1)-Math.floor((d-1)/7);return CYCLE[i%6];};
+const BENCH=[
+ ['pushups','Max strict push-ups (reps)'],['pullups','Max pull-ups or inverted rows (reps)'],
+ ['squats','Bodyweight squats in 60 s (reps)'],['plank','Plank hold (seconds)'],['burpees','Burpees in 60 s (reps)']];
+const CHECKPOINTS=[1,8,15,22,30];
+const MEAS=[['weight','Weight (kg)'],['neck','Neck (cm)'],['chest','Chest (cm)'],['waist','Waist @ navel (cm)'],['hips','Hips (cm)'],['arm','Arm flexed (cm)'],['thigh','Thigh (cm)']];
+
+const FOODS=[
+ // id, name, kcal,p,c,f per 100 g (approx., USDA FoodData Central / IFCT, cooked unless stated)
+ ['chicken','Chicken breast, cooked',165,31,0,3.6,'p'],['egg','Whole egg (≈2 large)',143,12.6,0.7,9.5,'p'],
+ ['eggw','Egg whites',52,10.9,0.7,0.2,'p'],['fish','White fish (tilapia/basa/rohu), cooked',128,26,0,2.7,'p'],
+ ['paneer','Paneer (full fat)',265,18,1.2,20,'p'],['gy','Greek yogurt, non-fat',59,10,3.6,0.4,'p'],
+ ['tofu','Firm tofu',144,17,2.8,8.7,'p'],['soya','Soya chunks (dry)',336,52,33,0.5,'p'],
+ ['whey','Whey protein powder',400,80,7,5,'p'],['dal','Moong dal, cooked',105,7,19,0.4,'p'],
+ ['chana','Chickpeas (chana), cooked',164,8.9,27.4,2.6,'p'],['rajma','Rajma, cooked',127,8.7,22.8,0.5,'p'],
+ ['rice','White rice, cooked',130,2.7,28,0.3,'c'],['brice','Brown rice, cooked',123,2.7,25.6,1,'c'],
+ ['atta','Whole-wheat atta (dry, for roti)',340,13,72,2.5,'c'],['oats','Rolled oats (dry)',379,13.2,67.7,6.5,'c'],
+ ['sweetp','Sweet potato, baked',90,2,20.7,0.2,'c'],['potato','Potato, boiled',87,1.9,20,0.1,'c'],
+ ['banana','Banana',89,1.1,22.8,0.3,'c'],['milk','Whole milk',61,3.2,4.8,3.3,'c'],
+ ['almond','Almonds',579,21.2,21.6,49.9,'f'],['peanut','Peanuts',567,25.8,16.1,49.2,'f'],
+ ['pb','Peanut butter',588,25,20,50,'f'],['olive','Olive / mustard / groundnut oil',884,0,0,100,'f'],['ghee','Ghee',900,0,0,100,'f'],
+ ['spinach','Spinach (raw)',23,2.9,3.6,0.4,'v'],['broc','Broccoli',34,2.8,6.6,0.4,'v']];
+const FOOD=Object.fromEntries(FOODS.map(f=>[f[0],{id:f[0],n:f[1],k:f[2],p:f[3],c:f[4],f:f[5],t:f[6]}]));
+
+const MENUS={
+ nonveg:[
+  {name:'Day type A',meals:[['Breakfast','3 whole eggs + 4 egg whites omelette with onion/tomato/spinach · 2 whole-wheat rotis (or 60 g oats with banana) · green tea/black coffee'],['Lunch','200 g grilled/curry chicken breast (less oil) · rice 200–250 g cooked · dal 1 katori · big salad · 1 tsp ghee'],['Pre/Post-workout','1 scoop whey in water/milk · 1 banana · 10 almonds'],['Dinner','200 g fish or chicken · sautéed veg (broccoli/beans) · 2 rotis or sweet potato 250 g · curd 100 g']]},
+  {name:'Day type B',meals:[['Breakfast','Greek yogurt 250 g + oats 50 g + berries/banana + 1 tbsp peanut butter'],['Lunch','Egg-bhurji (4 eggs) + 3 rotis + cucumber/carrot salad + 1 katori sabzi'],['Pre/Post-workout','Boiled eggs ×3 + 2 slices whole-grain toast + fruit'],['Dinner','Chicken/fish tikka 200 g (air-fried) · brown rice 150 g · mixed veg · soup']]}],
+ egg:[
+  {name:'Day type A',meals:[['Breakfast','4-egg-white + 2-whole-egg scramble · 2 rotis · fruit'],['Lunch','Paneer bhurji 120 g · 3 rotis · dal · salad'],['Pre/Post-workout','Whey scoop + banana + 10 almonds (or 3 boiled eggs)'],['Dinner','Egg curry (3 eggs) · rice 150 g · sautéed veg · curd']]},
+  {name:'Day type B',meals:[['Breakfast','Greek yogurt 250 g + oats 50 g + fruit + nuts'],['Lunch','Rajma/chana 1.5 katori · rice 200 g · 2 boiled eggs · salad'],['Pre/Post-workout','Peanut butter sandwich (2 slices) + whey in milk'],['Dinner','Tofu/paneer stir-fry 150 g · 2 rotis · mixed veg · 3 boiled egg whites']]}],
+ veg:[
+  {name:'Day type A',meals:[['Breakfast','Moong-dal chilla ×3 with paneer stuffing 60 g · mint chutney · 250 ml milk/curd'],['Lunch','Soya chunks curry (50 g dry) · rice 200 g · dal 1 katori · salad · 1 tsp ghee'],['Pre/Post-workout','Whey scoop (or Greek yogurt 250 g) + banana + 10 almonds'],['Dinner','Paneer 150 g tikka/bhurji · 2 rotis · sautéed veg · curd']]},
+  {name:'Day type B',meals:[['Breakfast','Oats 60 g cooked in milk + whey scoop + banana + 1 tbsp peanut butter'],['Lunch','Rajma/chole 1.5 katori · brown rice 150 g · Greek yogurt 150 g · salad'],['Pre/Post-workout','Roasted chana 40 g + fruit + 250 ml milk'],['Dinner','Tofu stir-fry 200 g · sweet potato 250 g or 2 rotis · mixed veg · dal soup']]}]};
+
+const REFS=[
+ ['Train each muscle ≥2×/week','Schoenfeld BJ, Ogborn D, Krieger JW. Effects of resistance training frequency on measures of muscle hypertrophy: a systematic review and meta-analysis. Sports Med. 2016;46(11):1689–1697.','Effects of resistance training frequency on measures of muscle hypertrophy meta-analysis'],
+ ['≥10 hard sets per muscle/week gives more growth','Schoenfeld BJ, Ogborn D, Krieger JW. Dose-response relationship between weekly resistance training volume and increases in muscle mass. J Sports Sci. 2017;35(11):1073–1082.','Dose-response relationship between weekly resistance training volume and increases in muscle mass'],
+ ['Light/high-rep (home) training builds muscle similarly if taken close to failure','Schoenfeld BJ, Grgic J, Ogborn D, Krieger JW. Strength and hypertrophy adaptations between low- vs. high-load resistance training. J Strength Cond Res. 2017;31(12):3508–3523.','Strength and hypertrophy adaptations between low- vs. high-load resistance training'],
+ ['Rest ≥60–180 s between big sets','Schoenfeld BJ et al. Longer interset rest periods enhance muscle strength and hypertrophy in resistance-trained men. J Strength Cond Res. 2016;30(7):1805–1812.','Longer interset rest periods enhance muscle strength and hypertrophy in resistance-trained men'],
+ ['Protein ≈1.6 g/kg plateau, up to 2.2 g/kg','Morton RW et al. Protein supplementation on resistance training-induced gains in muscle mass and strength in healthy adults. Br J Sports Med. 2018;52(6):376–384.','protein supplementation resistance training-induced gains muscle mass strength meta-analysis Morton'],
+ ['Higher protein and slow loss (0.5–1% BW/wk) in a cut','Helms ER, Aragon AA, Fitschen PJ. Evidence-based recommendations for natural bodybuilding contest preparation: nutrition and supplementation. J Int Soc Sports Nutr. 2014;11:20.','Evidence-based recommendations for natural bodybuilding contest preparation nutrition and supplementation'],
+ ['Slower weight loss preserves lean mass & performance','Garthe I et al. Effect of two different weight-loss rates on body composition and strength and power-related performance in elite athletes. Int J Sport Nutr Exerc Metab. 2011;21(2):97–104.','Effect of two different weight-loss rates on body composition and strength and power-related performance in elite athletes'],
+ ['Resting energy equation used for calories','Mifflin MD et al. A new predictive equation for resting energy expenditure in healthy individuals. Am J Clin Nutr. 1990;51(2):241–247.','A new predictive equation for resting energy expenditure in healthy individuals'],
+ ['Spread protein over ~4 meals (≈0.4 g/kg/meal)','Schoenfeld BJ, Aragon AA. How much protein can the body use in a single meal for muscle-building? J Int Soc Sports Nutr. 2018;15:10.','How much protein can the body use in a single meal for muscle-building'],
+ ['Fat loss + muscle gain simultaneously is possible (novices, high protein)','Barakat C et al. Body recomposition: can we lose fat and gain muscle at the same time? Strength Cond J. 2020;42(5):7–21.','Body recomposition can we lose fat and gain muscle at the same time'],
+ ['Short HIIT improves fitness & fat oxidation','Gibala MJ, Little JP, MacDonald MJ, Hawley JA. Physiological adaptations to low-volume, high-intensity interval training in health and disease. J Physiol. 2012;590(5):1077–1084.','Physiological adaptations to low-volume high-intensity interval training in health and disease'],
+ ['General exercise prescription (ACSM)','Garber CE et al. Quantity and quality of exercise for developing and maintaining cardiorespiratory, musculoskeletal, and neuromotor fitness. Med Sci Sports Exerc. 2011;43(7):1334–1359.','Quantity and quality of exercise for developing and maintaining cardiorespiratory musculoskeletal and neuromotor fitness'],
+ ['Physical activity guideline (150–300 min/week)','Bull FC et al. World Health Organization 2020 guidelines on physical activity and sedentary behaviour. Br J Sports Med. 2020;54(24):1451–1462.','World Health Organization 2020 guidelines on physical activity and sedentary behaviour'],
+ ['Nutrition for athletes (ADA/DC/ACSM)','Thomas DT, Erdman KA, Burke LM. Position of the Academy of Nutrition and Dietetics, Dietitians of Canada, and the ACSM: Nutrition and Athletic Performance. J Acad Nutr Diet. 2016;116(3):501–528.','Nutrition and Athletic Performance position of the Academy of Nutrition and Dietetics Dietitians of Canada ACSM'],
+ ['Creatine monohydrate 3–5 g/day: safe & effective','Kreider RB et al. ISSN position stand: safety and efficacy of creatine supplementation in exercise, sport, and medicine. J Int Soc Sports Nutr. 2017;14:18.','International Society of Sports Nutrition position stand safety and efficacy of creatine supplementation'],
+ ['Caffeine 3–6 mg/kg improves performance','Guest NS et al. ISSN position stand: caffeine and exercise performance. J Int Soc Sports Nutr. 2021;18:1.','International society of sports nutrition position stand caffeine and exercise performance'],
+ ['Caffeine within 6 h of bedtime disrupts sleep','Drake C, Roehrs T, Shambroom J, Roth T. Caffeine effects on sleep taken 0, 3, or 6 hours before going to bed. J Clin Sleep Med. 2013;9(11):1195–1200.','Caffeine effects on sleep taken 0 3 or 6 hours before going to bed'],
+ ['Sleep ≥7 h/night','Watson NF et al. Recommended amount of sleep for a healthy adult: AASM and SRS consensus. Sleep. 2015;38(6):843–844.','Recommended amount of sleep for a healthy adult joint consensus statement'],
+ ['Short sleep undermines fat loss (more lean mass lost)','Nedeltcheva AV et al. Insufficient sleep undermines dietary efforts to reduce adiposity. Ann Intern Med. 2010;153(7):435–441.','Insufficient sleep undermines dietary efforts to reduce adiposity'],
+ ['Hydration during exercise','Sawka MN et al. ACSM position stand: exercise and fluid replacement. Med Sci Sports Exerc. 2007;39(2):377–390.','American College of Sports Medicine position stand exercise and fluid replacement'],
+ ['Overtraining risk & monitoring (why a weekly rest day + readiness checks matter)','Meeusen R et al. Prevention, diagnosis and treatment of the overtraining syndrome: ECSS and ACSM consensus. Med Sci Sports Exerc. 2013;45(1):186–205.','Prevention diagnosis and treatment of the overtraining syndrome joint consensus statement ECSS ACSM'],
+ ['High protein is safe for healthy kidneys','Devries MC et al. Changes in kidney function do not differ between healthy adults consuming higher- vs lower-protein diets: a meta-analysis. J Nutr. 2018;148(11):1760–1775.','Changes in kidney function do not differ between healthy adults consuming higher- compared with lower- or normal-protein diets'],
+ ['Alcohol impairs post-exercise muscle protein synthesis','Parr EB et al. Alcohol ingestion impairs maximal post-exercise rates of myofibrillar protein synthesis. PLoS ONE. 2014;9(2):e88384.','Alcohol ingestion impairs maximal post-exercise rates of myofibrillar protein synthesis following a single bout of concurrent training'],
+ ['Intermittent diet breaks (our maintenance day) — suggestive, not conclusive','Byrne NM et al. Intermittent energy restriction improves weight loss efficiency in obese men: the MATADOR study. Int J Obes. 2018;42(2):129–138.','Intermittent energy restriction improves weight loss efficiency in obese men MATADOR'],
+ ['Body-fat estimate (US Navy circumference method, ±3–4 % error)','Hodgdon JA, Beckett MB. Prediction of percent body fat for U.S. Navy men and women from body circumferences and height. Naval Health Research Center Reports 84-11 & 84-29. 1984.','Hodgdon Beckett prediction of percent body fat US Navy body circumferences and height']];
+
+/* ============================================================
+   STATE
+   ============================================================ */
+const KEY='transform30_v1';
+const todayStr=()=>{const d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');};
+const defState=()=>({v:1,start:null,gmode:'gym',modes:{},done:{},loads:{},completed:{},daily:{},meas:{},bench:{},restchk:{},
+  profile:{sex:'male',age:25,h:170,w:70,act:1.55,goal:'cut',diet:'nonveg'},pb:{meal:0,p:'chicken',c:'rice',f:'ghee'}});
+let S;
+function load(){try{const r=localStorage.getItem(KEY);if(r){const o=JSON.parse(r);const d=defState();return Object.assign(d,o,{profile:Object.assign(d.profile,o.profile||{}),pb:Object.assign(d.pb,o.pb||{})});}}catch(e){console.warn(e)}return defState();}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){toast('⚠️ Could not save (storage full or blocked)');}}
+S=load();
+let view=(location.hash||'#today').slice(1);if(!['today','plan','diet','progress','guide'].includes(view))view='today';
+let selDay=null;
+
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const $=(s,e=document)=>e.querySelector(s);
+const D=d=>(S.daily[d]=S.daily[d]||{});
+function curDay(){
+  if(!S.start)return 1;
+  const a=new Date(S.start+'T00:00:00'),b=new Date(todayStr()+'T00:00:00');
+  const n=Math.round((b-a)/864e5)+1;return Math.min(30,Math.max(1,n));
+}
+const daysSinceStart=()=>{if(!S.start)return 0;const a=new Date(S.start+'T00:00:00'),b=new Date(todayStr()+'T00:00:00');return Math.round((b-a)/864e5)+1;};
+const dayMode=d=>S.modes[d]||S.gmode;
+const readiness=d=>{
+  const x=D(d);if(x.sleep==null||x.sore==null||x.energy==null||x.sleep===''||x.sore===''||x.energy==='')return {lvl:'full',score:null};
+  const sl=x.sleep>=7?2:x.sleep>=6?1:0, so=x.sore<=2?2:x.sore==3?1:0, en=x.energy>=4?2:x.energy==3?1:0;
+  const t=sl+so+en;return {lvl:t>=5?'full':t>=3?'mod':'low',score:t};
+};
+function plan(d){
+  const type=typeOf(d);if(type==='rest')return {type,rest:true};
+  const mode=dayMode(d),ph=phaseOf(d),W=WORKOUTS[type],r=readiness(d);
+  const ex=W[mode].map(e=>{
+    let s=e.s;
+    if(ph.id===1)s=Math.max(e.s>1?2:1,s-1);
+    if(ph.id>=3&&e.c)s+=1;
+    if(r.lvl==='mod'&&s>1)s=Math.max(2,s-1);
+    if(r.lvl==='low'&&s>1)s=Math.max(1,Math.round(s*0.6));
+    const isIso=!e.c&&e.s>=2&&e.rest>0;
+    return {...e,sets:s,tech:(ph.id===4&&isIso&&r.lvl==='full')};
+  });
+  return {type,rest:false,mode,ph,W,ex,r};
+}
+const key=(d,m)=>d+':'+m;
+const setsDone=(d,m)=>S.done[key(d,m)]||{};
+function stats(){
+  const comp=Object.keys(S.completed).filter(k=>S.completed[k]).map(Number);
+  const cd=curDay();let streak=0;
+  for(let d=Math.min(cd,30);d>=1;d--){if(S.completed[d])streak++;else if(d===cd&&!S.completed[d])continue;else break;}
+  return {n:comp.length,streak,cd};
+}
+
+/* diet calc */
+function calc(p){
+  const w=+p.w,h=+p.h,a=+p.age;if(!(w>20&&h>100&&a>10))return null;
+  const bmr=10*w+6.25*h-5*a+(p.sex==='male'?5:-161);
+  const tdee=bmr*(+p.act);
+  const adj={cut:-0.20,recomp:-0.10,maint:0,bulk:0.08}[p.goal];
+  let kcal=tdee*(1+adj),warn=[];
+  const floor=Math.max(p.sex==='male'?1500:1200,bmr*0.95);
+  if(kcal<floor){kcal=floor;warn.push('Calories were raised to a safe floor (≈ your resting energy). Do not eat lower than this.');}
+  kcal=Math.round(kcal/10)*10;
+  const gkg={cut:2.2,recomp:2.0,maint:1.8,bulk:1.8}[p.goal];
+  const prot=Math.round(w*gkg);
+  let fat=Math.round(Math.max(w*0.8,kcal*0.2/9));
+  let carb=Math.round((kcal-prot*4-fat*9)/4);
+  if(carb<w*2){carb=Math.round(w*2);fat=Math.round((kcal-prot*4-carb*4)/9);if(fat<w*0.6){fat=Math.round(w*0.6);warn.push('Macros are tight for this calorie level — consider a smaller deficit.');}}
+  const weekly=(tdee-kcal)*7;
+  return {bmr:Math.round(bmr),tdee:Math.round(tdee),kcal,prot,carb,fat,
+    fiber:Math.round(kcal/1000*14),water:+(w*0.037).toFixed(1),waterTrain:+(w*0.037+0.5).toFixed(1),
+    est30:+((tdee-kcal)*30/7700).toFixed(1),pct:+(weekly/7700/w*100).toFixed(2),caff:Math.min(400,Math.round(w*3)),warn,
+    rest:Math.round(tdee/10)*10};
+}
+function navyBF(m,p){
+  const h=+p.h,w=+m.waist,n=+m.neck,hp=+m.hips;
+  if(!(h&&w&&n))return null;
+  let bf;
+  if(p.sex==='male'){if(w<=n)return null;bf=495/(1.0324-0.19077*Math.log10(w-n)+0.15456*Math.log10(h))-450;}
+  else{if(!hp||w+hp<=n)return null;bf=495/(1.29579-0.35004*Math.log10(w+hp-n)+0.221*Math.log10(h))-450;}
+  return isFinite(bf)?Math.max(2,Math.min(60,bf)):null;
+}
+
+/* ============================================================
+   RENDER
+   ============================================================ */
+const app=$('#app');
+function render(){
+  $('#chipDay').textContent='Day '+curDay()+' / 30';
+  document.querySelectorAll('#nav button').forEach(b=>b.classList.toggle('on',b.dataset.v===view));
+  $('#gm-gym').classList.toggle('on',S.gmode==='gym');$('#gm-home').classList.toggle('on',S.gmode==='home');
+  $('#gmode').classList.toggle('home',S.gmode==='home');
+  app.innerHTML={today:rToday,plan:rPlan,diet:rDiet,progress:rProgress,guide:rGuide}[view]();
+  if(view==='progress')drawChart();
+}
+
+function ring(pct,label,sub){
+  const R=56,C=2*Math.PI*R;
+  return `<div class="ring"><svg width="132" height="132" viewBox="0 0 132 132"><defs><linearGradient id="rg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="hsl(268,92%,68%)"/><stop offset="1" stop-color="hsl(158,84%,52%)"/></linearGradient></defs><circle cx="66" cy="66" r="${R}" fill="none" stroke="hsl(252 24% 18%)" stroke-width="11"/><circle cx="66" cy="66" r="${R}" fill="none" stroke="url(#rg)" stroke-width="11" stroke-linecap="round" stroke-dasharray="${C}" stroke-dashoffset="${C*(1-pct)}" style="transition:stroke-dashoffset .8s"/></svg><div class="v"><div>${label}<small>${sub}</small></div></div></div>`;
+}
+
+function rToday(){
+  const st=stats(),cd=st.cd,d=selDay??cd;
+  const p=plan(d),x=D(d);
+  let h='';
+  const notStarted=!S.start;
+  h+=`<section class="card hero"><div>${ring(st.n/30,st.n+'/30','days done')}</div><div>
+    <h2 style="font-size:1.5rem">${notStarted?'Ready to start your 30 days?':'Day '+cd+' of 30'}</h2>
+    <p class="sub">${notStarted?'Tap start and Day 1 begins today. The app saves everything automatically in your browser.':'🔥 Streak: <b>'+st.streak+'</b> day(s) · Rest days are <b>7, 14, 21 and 28</b> (one per week). Every other day counts.'}</p>
+    <div class="row" style="margin-top:12px">
+      ${notStarted?'<button class="btn pri" data-a="start">🚀 Start Day 1 today</button>':''}
+      <label class="f" style="min-width:170px">Start date<input type="date" data-f="start" value="${S.start||todayStr()}"></label>
+    </div></div></section>`;
+  h+=`<div class="row" style="margin-bottom:14px">
+    <button class="btn" data-a="prev" ${d<=1?'disabled style="opacity:.4"':''}>◀ Prev</button>
+    <div class="chip">Viewing Day ${d}${d===cd&&S.start?' · Today':''}</div>
+    <button class="btn" data-a="next" ${d>=30?'disabled style="opacity:.4"':''}>Next ▶</button>
+    ${d!==cd?'<button class="btn" data-a="goto" data-d="'+cd+'">Jump to today</button>':''}
+  </div>`;
+  if(p.rest){
+    const chk=S.restchk[d]||{};
+    h+=`<section class="card"><div class="row"><span class="badge bw">Rest day</span><span class="badge b2">1 per week</span></div>
+      <h2 style="font-size:1.4rem;margin-top:8px">😴 Day ${d} — Full Recovery</h2>
+      <p class="sub">Your muscles, tendons and nervous system adapt while you rest, so today matters as much as a workout.</p>
+      <ul class="l" style="list-style:none;padding:0;margin-top:12px">${REST_PLAN.map((t,i)=>`<li><label style="display:flex;gap:10px;align-items:flex-start"><input type="checkbox" data-f="restchk" data-d="${d}" data-i="${i}" ${chk[i]?'checked':''}><span>${esc(t)}</span></label></li>`).join('')}</ul>
+      <details style="margin-top:12px"><summary>🧘 Mobility routine (15 min)</summary><ul>${MOBILITY.map(m=>`<li>${m}</li>`).join('')}</ul></details>
+      <button class="btn ${S.completed[d]?'':'ok'}" data-a="complete" data-d="${d}">${S.completed[d]?'✅ Rest day logged (tap to undo)':'Mark rest day done'}</button></section>`;
+    return h+trackerHTML(d);
+  }
+  const mode=p.mode,ph=p.ph,sd=setsDone(d,mode),ld=S.loads[key(d,mode)]||{};
+  const totalSets=p.ex.reduce((a,e)=>a+e.sets,0);
+  const doneSets=p.ex.reduce((a,e,i)=>a+((sd[i]||[]).slice(0,e.sets).filter(Boolean).length),0);
+  const pct=totalSets?doneSets/totalSets:0;
+  h+=`<section class="card">
+    <div class="row"><span class="badge ${ph.cls}">${ph.name}</span><span class="badge b4">${ph.days}</span>${d===1||d===30?'<span class="badge b3">Benchmark day</span>':''}</div>
+    <h2 style="font-size:1.45rem;margin-top:8px">${p.W.emoji} ${esc(p.W.title)}</h2>
+    <p class="sub">${ph.note}<br>Effort: <b>${ph.rir}</b> · Tempo: <b>${ph.tempo}</b> (down-pause-up, seconds)</p>
+    <div class="row" style="margin-top:12px">
+      <div class="seg ${mode==='home'?'home':''}" role="group" aria-label="Today's location">
+        <button class="${mode==='gym'?'on':''}" data-a="daymode" data-m="gym" data-d="${d}">🏋️ Gym</button>
+        <button class="${mode==='home'?'on':''}" data-a="daymode" data-m="home" data-d="${d}">🏠 Home (no gym)</button>
+      </div><span class="sub">Gym closed or can't go? Tap <b>Home</b> — same muscles, zero equipment, zero wasted day.</span>
+    </div>
+    <div style="margin-top:14px"><div class="progbar"><i style="width:${Math.round(pct*100)}%"></i></div>
+    <div class="sub" style="margin-top:4px">${doneSets}/${totalSets} sets complete · ${Math.round(pct*100)}%</div></div>
+  </section>`;
+  if(d===1||d===30)h+=`<div class="note i">📏 <b>Benchmark day:</b> before training, log your tests (push-ups, pull-ups, squats, plank, burpees) and measurements in the <a href="#progress" data-a="nav" data-v="progress">Progress</a> tab so you can compare ${d===1?'on Day 30':'with Day 1'}.</div>`;
+  /* readiness */
+  const rd=p.r,lv=rd.lvl;
+  h+=`<section class="card"><h2>🩺 Readiness check <span class="sub">(30 sec · auto-adjusts volume so you never overtrain, never skip)</span></h2>
+    <div class="grid g3" style="margin-top:10px">
+      <label class="f">Sleep last night (h)<input type="number" min="0" max="14" step="0.5" data-f="daily" data-d="${d}" data-k="sleep" value="${x.sleep??''}"></label>
+      <label class="f">Muscle soreness<select data-f="daily" data-d="${d}" data-k="sore"><option value="">—</option>${[[1,'1 · Fresh'],[2,'2 · Mild'],[3,'3 · Moderate'],[4,'4 · High'],[5,'5 · Very high']].map(([v,l])=>`<option value="${v}" ${x.sore==v?'selected':''}>${l}</option>`).join('')}</select></label>
+      <label class="f">Energy / mood<select data-f="daily" data-d="${d}" data-k="energy"><option value="">—</option>${[[1,'1 · Drained'],[2,'2 · Low'],[3,'3 · Okay'],[4,'4 · Good'],[5,'5 · Great']].map(([v,l])=>`<option value="${v}" ${x.energy==v?'selected':''}>${l}</option>`).join('')}</select></label>
+    </div>
+    <div class="note ${lv==='full'?'g':lv==='mod'?'w':'b'}">${lv==='full'?(rd.score==null?'Fill the three fields above — default is the full plan.':'✅ <b>Green:</b> full plan. Attack it.'):lv==='mod'?'🟡 <b>Amber:</b> −1 set per exercise (already applied below). Keep loads, leave 2 reps in reserve.':'🔴 <b>Red:</b> reduced session (~60% of sets, RPE 6) applied below. Still train — just lighter. If you have fever, chest pain, or sharp pain: stop and rest.'}</div></section>`;
+  /* warmup */
+  h+=`<details><summary>🔥 Warm-up (8–10 min)</summary><ul>${WARM[p.type].map(w=>`<li>${esc(w)}</li>`).join('')}</ul></details>`;
+  /* exercises */
+  p.ex.forEach((e,i)=>{
+    const a=(sd[i]||[]),all=e.sets>0&&a.slice(0,e.sets).filter(Boolean).length===e.sets;
+    h+=`<div class="ex ${all?'done':''}"><div class="ex-h"><div class="num">${i+1}</div><div><h4>${esc(e.n)}</h4><div class="meta">${e.sets} × ${esc(e.r)}${e.rest?' · rest '+e.rest+' s':''}</div></div></div>
+      <p class="tip">${esc(e.tip)}</p>
+      ${e.tech?`<p class="tech">⚡ Peak technique: ${mode==='gym'?'last set → drop-set (reduce load ~25%, continue to near failure).':'last set → rest-pause (go to near failure, rest 15 s, repeat twice).'}</p>`:''}
+      <div class="sets">${Array.from({length:e.sets},(_,j)=>`<button class="setb ${a[j]?'on':''}" data-a="set" data-d="${d}" data-m="${mode}" data-i="${i}" data-j="${j}" data-rest="${e.rest}" aria-label="Set ${j+1}">${a[j]?'✓':j+1}</button>`).join('')}</div>
+      <input class="load" type="text" placeholder="Log load / notes (e.g. 60 kg × 8, 8, 7)" data-f="load" data-d="${d}" data-m="${mode}" data-i="${i}" value="${esc(ld[i]||'')}"></div>`;
+  });
+  h+=`<details><summary>❄️ Cool-down (5–8 min)</summary><ul>${COOL.map(w=>`<li>${esc(w)}</li>`).join('')}</ul></details>`;
+  h+=`<div class="note i">👟 Daily extras: <b>8,000–10,000 steps</b> · <b>8-min mobility</b> before bed (see Safety tab) · log below.</div>`;
+  h+=`<div class="row" style="margin-bottom:16px"><button class="btn ${S.completed[d]?'':'ok'}" data-a="complete" data-d="${d}">${S.completed[d]?'✅ Day completed (tap to undo)':'✔ Mark Day '+d+' complete'}</button></div>`;
+  return h+trackerHTML(d);
+}
+function trackerHTML(d){
+  const x=D(d),pr=calc(S.profile),wl=x.water||0,target=pr?pr.waterTrain*1000:3000;
+  return `<section class="card"><h2>📋 Daily tracker — Day ${d}</h2>
+    <div class="grid g3" style="margin-top:10px">
+      <div><div class="sub" style="font-weight:700;text-transform:uppercase;font-size:.7rem">Water</div><div class="big">${(wl/1000).toFixed(2)} L</div><div class="progbar" style="margin:6px 0"><i style="width:${Math.min(100,wl/target*100)}%"></i></div>
+        <div class="row"><button class="btn" data-a="water" data-d="${d}" data-v="250">+250 ml</button><button class="btn" data-a="water" data-d="${d}" data-v="-250">−</button></div><div class="sub" style="margin-top:4px">Goal ≈ ${(target/1000).toFixed(1)} L</div></div>
+      <label class="f">Steps<input type="number" min="0" step="100" data-f="daily" data-d="${d}" data-k="steps" value="${x.steps??''}"></label>
+      <label class="f">Body weight (kg) — morning<input type="number" min="20" step="0.1" data-f="daily" data-d="${d}" data-k="weight" value="${x.weight??''}"></label>
+      <label class="f">Calories eaten (optional)<input type="number" min="0" step="10" data-f="daily" data-d="${d}" data-k="kcal" value="${x.kcal??''}"></label>
+      <label class="f">Protein eaten (g)<input type="number" min="0" step="1" data-f="daily" data-d="${d}" data-k="prot" value="${x.prot??''}"></label>
+      <div style="display:flex;flex-direction:column;gap:8px;justify-content:center">
+        <label class="row"><input type="checkbox" data-f="daily" data-d="${d}" data-k="diet" ${x.diet?'checked':''}> Diet plan followed</label>
+        <label class="row"><input type="checkbox" data-f="daily" data-d="${d}" data-k="mob" ${x.mob?'checked':''}> Mobility done</label>
+        <label class="row"><input type="checkbox" data-f="daily" data-d="${d}" data-k="creat" ${x.creat?'checked':''}> Creatine 3–5 g (optional)</label>
+      </div></div>
+    <label class="f" style="margin-top:12px">Notes<textarea data-f="daily" data-d="${d}" data-k="note" placeholder="How did it feel? Pain, PRs, cravings…">${esc(x.note||'')}</textarea></label></section>`;
+}
+
+function rPlan(){
+  const st=stats(),cd=st.cd;
+  let h=`<section class="card"><h2>🗓️ Your 30-day map</h2><p class="sub">26 training days + <b>1 rest day every week (Days 7, 14, 21, 28)</b>. Each muscle group is trained about twice per week, the evidence-backed frequency for growth. Tap any day to open it.</p>
+  <div class="legend" style="margin-top:10px">${P.map(p=>`<span><i style="background:var(--${p.id==1?'a2':p.id==2?'a4':p.id==3?'a3':'a1'})"></i>${p.name} (${p.days})</span>`).join('')}<span><i style="background:var(--warn)"></i>Rest</span></div></section>`;
+  for(let w=0;w<5;w++){
+    const from=w*7+1,to=Math.min(30,from+6);
+    h+=`<h3 style="margin:18px 4px 8px">Days ${from}–${to}</h3><div class="days">`;
+    for(let d=from;d<=to;d++){
+      const t=typeOf(d),W=WORKOUTS[t],cls=['day',S.completed[d]?'done':'',d===cd&&S.start?'today':'',t==='rest'?'rest':'',d===(selDay??cd)?'sel':''].join(' ');
+      h+=`<button class="${cls}" data-a="goto" data-d="${d}"><div class="n">${d}</div><div class="t">${t==='rest'?'Rest day':W.short}</div><div class="e">${t==='rest'?'😴':W.emoji}</div>${S.completed[d]?'<div class="ck">✓</div>':''}</button>`;
+    }
+    h+='</div>';
+  }
+  h+=`<section class="card" style="margin-top:18px"><h2>How the progression works</h2><div class="tw"><table><tr><th>Phase</th><th>Sets</th><th>Effort</th><th>Goal</th></tr>
+  ${P.map(p=>`<tr><td><span class="badge ${p.cls}">${p.name}</span><br><span class="sub">${p.days}</span></td><td>${p.id===1?'Base −1':p.id===2?'Base':'Base + 1 on compounds'}</td><td>${p.rir}</td><td>${p.note}</td></tr>`).join('')}</table></div>
+  <div class="note w">⚠️ Training 6 days a week is <b>very demanding</b> (overtraining consensus: Meeusen 2013). That is why you get a full rest day every week, the plan alternates muscle groups, a daily readiness check auto-reduces volume, and a lighter conditioning day sits mid-week. Listen to your body: if you have sharp pain, fever or chest pain, the plan allows you to stop.</div></section>
+  <section class="card"><h2>Weekly template</h2><div class="tw"><table><tr><th>Session</th><th>Focus</th><th>Muscles trained (frequency)</th></tr>
+  <tr><td>1</td><td>Push</td><td>Chest, front/side delts, triceps</td></tr><tr><td>2</td><td>Pull</td><td>Lats, upper back, rear delts, biceps</td></tr>
+  <tr><td>3</td><td>Legs</td><td>Quads, glutes, calves</td></tr><tr><td>4</td><td>HIIT + Core</td><td>Conditioning, abs, fat burn, active recovery for lifting muscles</td></tr>
+  <tr><td>5</td><td>Upper hypertrophy</td><td>Shoulders, arms, V-taper (2nd push/pull dose)</td></tr><tr><td>6</td><td>Posterior chain</td><td>Hamstrings, glutes, lower back</td></tr></table></div>
+  <p class="sub" style="margin-top:8px">Each week is these 6 sessions followed by a rest day (Days 7, 14, 21, 28), then it repeats. Every session has both a <b>gym</b> and a <b>home</b> version.</p></section>`;
+  return h;
+}
+
+function rDiet(){
+  const pf=S.profile,r=calc(pf);
+  const sel=(k,opts)=>`<select data-f="prof" data-k="${k}">${opts.map(([v,l])=>`<option value="${v}" ${String(pf[k])===String(v)?'selected':''}>${l}</option>`).join('')}</select>`;
+  let h=`<section class="card"><h2>🧮 Your numbers</h2><p class="sub">Calories use the Mifflin–St Jeor equation; protein/fat targets follow ISSN/ACSM sports-nutrition guidance. Everything updates live and is saved.</p>
+  <div class="grid g4" style="margin-top:12px">
+   <label class="f">Sex${sel('sex',[['male','Male'],['female','Female']])}</label>
+   <label class="f">Age<input type="number" data-f="prof" data-k="age" value="${pf.age}" min="14" max="80"></label>
+   <label class="f">Height (cm)<input type="number" data-f="prof" data-k="h" value="${pf.h}" min="120" max="230"></label>
+   <label class="f">Weight (kg)<input type="number" data-f="prof" data-k="w" value="${pf.w}" min="35" max="250" step="0.1"></label>
+   <label class="f">Daily activity${sel('act',[['1.55','Desk job + training (×1.55)'],['1.65','Some walking + training (×1.65)'],['1.725','On feet all day + training (×1.725)']])}</label>
+   <label class="f">Goal${sel('goal',[['cut','Max fat loss (−20 %)'],['recomp','Recomposition (−10 %)'],['maint','Maintain & perform'],['bulk','Lean gain (+8 %)']])}</label>
+   <label class="f">Food preference${sel('diet',[['nonveg','Non-vegetarian'],['egg','Eggetarian'],['veg','Vegetarian']])}</label></div></section>`;
+  if(!r)return h+'<div class="note b">Enter valid age, height and weight.</div>';
+  h+=`<section class="card"><h2>🎯 Daily targets (training days)</h2>
+  <div class="grid g4" style="margin-top:12px">
+    <div class="stat"><span>Calories</span><b>${r.kcal}</b></div><div class="stat"><span>Protein</span><b>${r.prot} g</b></div>
+    <div class="stat"><span>Carbs</span><b>${r.carb} g</b></div><div class="stat"><span>Fat</span><b>${r.fat} g</b></div>
+    <div class="stat"><span>Fibre</span><b>${r.fiber} g</b></div><div class="stat"><span>Water</span><b>${r.waterTrain} L</b></div>
+    <div class="stat"><span>Rest-day kcal (weekly)</span><b>${r.rest}</b></div><div class="stat"><span>Max caffeine</span><b>${r.caff} mg</b></div></div>
+  <p class="sub" style="margin-top:10px">BMR ${r.bmr} kcal · maintenance ≈ ${r.tdee} kcal · ${pf.goal==='maint'?'aiming to hold weight while improving performance':(pf.goal==='bulk'?'surplus':'deficit')+' ≈ '+Math.abs(r.pct)+' % body weight/week · estimated change in 30 days ≈ <b>'+(pf.goal==='bulk'?'+':'−')+Math.abs(r.est30)+' kg</b>'} (rough; water shifts and metabolic adaptation apply).</p>
+  ${r.warn.map(w=>`<div class="note w">⚠️ ${w}</div>`).join('')}
+  ${(pf.goal==='cut'&&r.pct>1)?'<div class="note b">Deficit above 1 % body-weight/week risks muscle loss. Choose "Recomposition".</div>':''}</section>`;
+  /* meal split */
+  const splits=[['Breakfast',.25],['Lunch',.30],['Pre/Post-workout',.15],['Dinner',.30]];
+  h+=`<section class="card"><h2>🍽️ Meal split (4 feedings)</h2><p class="sub">≈0.4 g/kg protein per meal across 4 meals supports muscle protein synthesis (Schoenfeld &amp; Aragon 2018).</p>
+  <div class="tw"><table><tr><th>Meal</th><th>kcal</th><th>Protein</th><th>Carbs</th><th>Fat</th></tr>${splits.map(([n,f])=>`<tr><td><b>${n}</b></td><td>${Math.round(r.kcal*f)}</td><td>${Math.round(r.prot*f)} g</td><td>${Math.round(r.carb*f)} g</td><td>${Math.round(r.fat*f)} g</td></tr>`).join('')}</table></div></section>`;
+  /* plate builder */
+  const pb=S.pb,mi=Math.min(3,pb.meal),f=splits[mi][1];
+  const tp=r.prot*f,tc=r.carb*f,tf=r.fat*f;
+  const fp=FOOD[pb.p],fc=FOOD[pb.c],ff=FOOD[pb.f];
+  const gP=fp.p>0?tp/fp.p*100:0;
+  const cleft=Math.max(0,tc-gP*fp.c/100),gC=fc.c>0?cleft/fc.c*100:0;
+  const fleft=Math.max(0,tf-gP*fp.f/100-gC*fc.f/100),gF=ff.f>0?fleft/ff.f*100:0;
+  const opt=(t,cur)=>FOODS.filter(x=>t.includes(x[6])).map(x=>`<option value="${x[0]}" ${cur===x[0]?'selected':''}>${x[1]}</option>`).join('');
+  h+=`<section class="card"><h2>⚖️ Plate builder</h2><p class="sub">Pick a meal and foods. Quantities (raw/cooked as listed) are calculated to hit that meal's macros. Add vegetables freely.</p>
+  <div class="grid g4" style="margin-top:10px">
+    <label class="f">Meal<select data-f="pb" data-k="meal">${splits.map((s,i)=>`<option value="${i}" ${mi===i?'selected':''}>${s[0]}</option>`).join('')}</select></label>
+    <label class="f">Protein source<select data-f="pb" data-k="p">${opt('p',pb.p)}</select></label>
+    <label class="f">Carb source<select data-f="pb" data-k="c">${opt('c',pb.c)}</select></label>
+    <label class="f">Fat source<select data-f="pb" data-k="f">${opt('f',pb.f)}</select></label></div>
+  <div class="grid g3" style="margin-top:12px"><div class="stat"><span>${esc(fp.n)}</span><b>${Math.round(gP)} g</b></div><div class="stat"><span>${esc(fc.n)}</span><b>${Math.round(gC)} g</b></div><div class="stat"><span>${esc(ff.n)}</span><b>${Math.round(gF)} g</b></div></div>
+  <p class="sub" style="margin-top:8px">Target for this meal: ${Math.round(r.kcal*f)} kcal · ${Math.round(tp)} g P · ${Math.round(tc)} g C · ${Math.round(tf)} g F.</p></section>`;
+  /* menus */
+  const dn={nonveg:'Non-vegetarian',egg:'Eggetarian',veg:'Vegetarian'}[pf.diet];
+  h+=`<section class="card"><h2>📅 Sample menus — ${dn}</h2><p class="sub">Rotate A/B daily, then scale portions using the plate builder. Use ≤1 tsp oil per meal; avoid deep-fried items.</p>
+  ${MENUS[pf.diet].map(m=>`<h3>${m.name}</h3><div class="tw"><table>${m.meals.map(([a,b])=>`<tr><td style="width:140px"><b>${a}</b></td><td>${esc(b)}</td></tr>`).join('')}</table></div>`).join('')}</section>`;
+  h+=`<section class="card"><h2>🧾 Food exchange table</h2><p class="sub">Approximate values per 100 g (USDA FoodData Central / IFCT); brands, cooking and recipes vary ±10 %.</p><div class="tw"><table><tr><th>Food</th><th>kcal</th><th>P</th><th>C</th><th>F</th></tr>
+  ${FOODS.map(x=>`<tr><td>${esc(x[1])}</td><td>${x[2]}</td><td>${x[3]}</td><td>${x[4]}</td><td>${x[5]}</td></tr>`).join('')}</table></div></section>`;
+  h+=`<section class="card"><h2>⏱️ Timing & supplements</h2><ul class="l">
+   <li><b>Pre-workout (60–90 min before):</b> carbs + protein (e.g. banana + eggs/whey). Train with a full tank — don't skip food on heavy days.</li>
+   <li><b>Post-workout (within ~2 h):</b> 25–40 g protein + carbs.</li>
+   <li><b>Evidence-backed supplements only:</b> creatine monohydrate 3–5 g/day (ISSN 2017), whey if you miss protein, caffeine ≤${r.caff} mg (3 mg/kg) before training but not within 6 h of bed, vitamin D only if tested low.</li>
+   <li><b>Rest days (7, 14, 21, 28):</b> eat at maintenance (${r.rest} kcal), with a bit more carbs — a short weekly diet break that helps adherence and training quality.</li></ul></section>`;
+  h+=dietPrecautions();
+  return h;
+}
+function dietPrecautions(){
+  return `<section class="card"><h2>⚠️ Diet precautions</h2><ul class="l">
+  <li><b>See a doctor first</b> if you have diabetes, kidney/liver/heart disease, hypertension, thyroid problems, are pregnant/breast-feeding, under 18, over 60, on medication, or have ever had an eating disorder.</li>
+  <li><b>Never eat below the calorie floor</b> the app computes (≈ your resting energy). Extreme diets cause muscle loss, low energy, hormonal disruption and gallstones.</li>
+  <li><b>Pace:</b> keep weight loss within about 0.5–1 % of body weight per week. Faster loss costs lean mass (Garthe 2011; Helms 2014).</li>
+  <li><b>No dehydration tricks:</b> no diuretics, laxatives, sauna suits, fat burners, "detox" teas. They are dangerous and do not burn fat.</li>
+  <li><b>High protein (≤2.2 g/kg) is safe for healthy kidneys</b> (Devries 2018), but drink water; people with kidney disease must not follow it without medical advice.</li>
+  <li><b>Fibre:</b> increase gradually (bloating); drink more water with fibre.</li>
+  <li><b>Electrolytes:</b> don't cut salt to zero while training twice daily or sweating heavily; include fruit, dal, milk and a pinch of salt in water on heavy days.</li>
+  <li><b>Alcohol:</b> avoid for 30 days; it blunts post-exercise muscle protein synthesis (Parr 2014) and wrecks sleep.</li>
+  <li><b>Caffeine:</b> max 400 mg/day; none within 6 hours of bedtime (Drake 2013). Skip if you have palpitations or anxiety.</li>
+  <li><b>Food safety:</b> cook eggs, chicken and fish fully; refrigerate leftovers within 2 h; wash produce.</li>
+  <li><b>Warning signs (stop the deficit and eat more):</b> dizziness, fainting, heart palpitations, missed periods, constant cold, hair loss, obsessive food thoughts, mood crashes, persistent insomnia.</li>
+  <li><b>After Day 30:</b> raise calories gradually (+100–150 kcal/week) to maintenance instead of rebounding. Keep strength training.</li></ul></section>`;
+}
+
+function rProgress(){
+  const st=stats(),pf=S.profile;
+  const ds=Object.entries(S.daily);
+  const avg=k=>{const v=ds.map(([,x])=>+x[k]).filter(n=>n>0);return v.length?(v.reduce((a,b)=>a+b,0)/v.length):null;};
+  const dietDays=ds.filter(([,x])=>x.diet).length;
+  const sleepAvg=avg('sleep'),stepsAvg=avg('steps');
+  let h=`<section class="card"><h2>📊 Adherence</h2><div class="grid g4" style="margin-top:10px">
+   <div class="stat"><span>Days completed</span><b>${st.n}/30</b></div><div class="stat"><span>Current streak</span><b>${st.streak}</b></div>
+   <div class="stat"><span>Diet days</span><b>${dietDays}</b></div><div class="stat"><span>Avg sleep</span><b>${sleepAvg?sleepAvg.toFixed(1)+' h':'—'}</b></div>
+   <div class="stat"><span>Avg steps</span><b>${stepsAvg?Math.round(stepsAvg).toLocaleString():'—'}</b></div></div></section>`;
+  h+=`<section class="card"><h2>⚖️ Weight trend</h2><p class="sub">Weigh every morning after the toilet, before food. Judge by the 7-day average, not single days.</p><div id="chartbox" style="margin-top:10px"></div></section>`;
+  /* measurements */
+  h+=`<section class="card"><h2>📏 Measurement checkpoints</h2><p class="sub">Measure at the same time of day, relaxed, tape snug but not tight. Waist at navel, neck below larynx, hips at widest. Body-fat uses the US Navy formula (±3–4 %).</p>
+  <div class="tw"><table><tr><th>Metric</th>${CHECKPOINTS.map(c=>`<th>Day ${c}</th>`).join('')}<th>Δ Day 1→latest</th></tr>
+  ${MEAS.map(([k,l])=>{
+    const vals=CHECKPOINTS.map(c=>k==='weight'?(D(c).weight??''):((S.meas[c]||{})[k]??''));
+    const first=vals.find(v=>v!==''),last=[...vals].reverse().find(v=>v!=='');
+    const delta=(first!==undefined&&last!==undefined&&first!==last)?(last-first):null;
+    return `<tr><td><b>${l}</b></td>${CHECKPOINTS.map((c,i)=>`<td><input type="number" step="0.1" data-f="meas" data-c="${c}" data-k="${k}" value="${vals[i]}"></td>`).join('')}<td>${delta!==null?`<b style="color:${delta<0?'var(--a2)':'var(--a3)'}">${delta>0?'+':''}${delta.toFixed(1)}</b>`:'—'}</td></tr>`;}).join('')}
+  <tr><td><b>Body fat %</b></td>${CHECKPOINTS.map(c=>{const m={...(S.meas[c]||{})};const bf=navyBF(m,pf);return `<td>${bf?bf.toFixed(1)+' %':'—'}</td>`;}).join('')}<td></td></tr>
+  <tr><td><b>Lean mass (kg)</b></td>${CHECKPOINTS.map(c=>{const bf=navyBF(S.meas[c]||{},pf),w=D(c).weight;return `<td>${bf&&w?(w*(1-bf/100)).toFixed(1):'—'}</td>`;}).join('')}<td></td></tr></table></div>
+  <p class="sub" style="margin-top:8px">Uses height/sex from your Diet tab profile. 📸 Also take front/side/back photos at each checkpoint (not stored here to save space).</p></section>`;
+  /* bench */
+  h+=`<section class="card"><h2>🏁 Performance benchmarks</h2><p class="sub">Test Day 1, Day 15 (optional) and Day 30 with the same form and rest.</p><div class="tw"><table><tr><th>Test</th><th>Day 1</th><th>Day 15</th><th>Day 30</th><th>Δ</th></tr>
+  ${BENCH.map(([k,l])=>{const v=[1,15,30].map(c=>(S.bench[c]||{})[k]??'');const dl=(v[0]!==''&&v[2]!=='')?(v[2]-v[0]):null;
+   return `<tr><td>${l}</td>${[1,15,30].map((c,i)=>`<td><input type="number" data-f="bench" data-c="${c}" data-k="${k}" value="${v[i]}"></td>`).join('')}<td>${dl!==null?`<b style="color:var(--a2)">${dl>0?'+':''}${dl}</b>`:'—'}</td></tr>`;}).join('')}</table></div></section>`;
+  return h;
+}
+function drawChart(){
+  const box=$('#chartbox');if(!box)return;
+  const pts=[];for(let d=1;d<=30;d++){const w=parseFloat(D(d).weight);if(w>0)pts.push([d,w]);}
+  if(pts.length<2){box.innerHTML='<div class="note i">Log your body weight in the Daily tracker (Today tab) for at least two days to see your trend.</div>';return;}
+  const W=900,H=240,pl=44,pr=14,pt=14,pb=28;
+  const ws=pts.map(p=>p[1]),mn=Math.min(...ws)-0.5,mx=Math.max(...ws)+0.5;
+  const X_=d=>pl+(d-1)/29*(W-pl-pr),Y=w=>pt+(1-(w-mn)/(mx-mn))*(H-pt-pb);
+  const path=pts.map((p,i)=>(i?'L':'M')+X_(p[0]).toFixed(1)+' '+Y(p[1]).toFixed(1)).join(' ');
+  // 7-day moving average
+  const ma=pts.map(([d])=>{const win=pts.filter(p=>p[0]<=d&&p[0]>d-7);return [d,win.reduce((a,b)=>a+b[1],0)/win.length];});
+  const mpath=ma.map((p,i)=>(i?'L':'M')+X_(p[0]).toFixed(1)+' '+Y(p[1]).toFixed(1)).join(' ');
+  let grid='';for(let i=0;i<=4;i++){const v=mn+(mx-mn)*i/4,y=Y(v);grid+=`<line x1="${pl}" x2="${W-pr}" y1="${y}" y2="${y}" stroke="hsl(252 20% 22%)"/><text x="${pl-6}" y="${y+4}" fill="hsl(250 14% 68%)" font-size="11" text-anchor="end">${v.toFixed(1)}</text>`;}
+  for(let d=1;d<=30;d+=7)grid+=`<text x="${X_(d)}" y="${H-8}" fill="hsl(250 14% 68%)" font-size="11" text-anchor="middle">D${d}</text>`;
+  box.innerHTML=`<svg viewBox="0 0 ${W} ${H}" style="width:100%;height:auto"><defs><linearGradient id="lg" x1="0" x2="1"><stop offset="0" stop-color="hsl(268,92%,68%)"/><stop offset="1" stop-color="hsl(158,84%,52%)"/></linearGradient></defs>${grid}
+   <path d="${path}" fill="none" stroke="hsl(250 14% 50%)" stroke-width="1.5" stroke-dasharray="4 4"/><path d="${mpath}" fill="none" stroke="url(#lg)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+   ${pts.map(p=>`<circle cx="${X_(p[0])}" cy="${Y(p[1])}" r="4" fill="hsl(252 30% 8%)" stroke="hsl(158,84%,52%)" stroke-width="2"><title>Day ${p[0]}: ${p[1]} kg</title></circle>`).join('')}</svg>
+   <div class="sub">Dashed = daily weight · Solid gradient = 7-day average · Change: <b>${(pts[pts.length-1][1]-pts[0][1]).toFixed(1)} kg</b></div>`;
+}
+
+function rGuide(){
+  const q=t=>'https://pubmed.ncbi.nlm.nih.gov/?term='+encodeURIComponent(t);
+  return `<section class="card"><h2>⚖️ Realistic expectations</h2>
+  <div class="note g">🎯 With strict adherence for 30 days, a realistic outcome for an average adult is roughly <b>2–5 kg of fat lost</b>, visible waist reduction (≈3–6 cm), and — especially if you are a beginner or returning — <b>0.5–1.5 kg of added muscle</b> plus large strength gains. Claims of "10 kg of fat in 30 days" are marketing: they require dangerous dehydration or extreme starvation.</div>
+  <div class="note w">This app is educational, not medical advice. If you have any health condition, consult a qualified doctor (and consider a PAR-Q screening) before starting.</div></section>
+  <section class="card"><h2>🛑 Training precautions</h2><ul class="l">
+  <li><b>Stop immediately and seek care:</b> chest pain, fainting, severe breathlessness, numbness/tingling, sudden sharp joint pain, or dark/cola-coloured urine with severe muscle pain (possible rhabdomyolysis — an emergency).</li>
+  <li><b>Muscle burn is fine; joint pain isn't.</b> Substitute the exercise (a home alternative is always available) rather than skipping the day.</li>
+  <li><b>Sick?</b> Symptoms only above the neck → light session OK (use red readiness). Fever, body aches, chest symptoms → rest.</li>
+  <li><b>Overtraining signs:</b> resting pulse up 5–10 bpm for 3+ days, worsening sleep, irritability, loss of strength for days, persistent soreness (Meeusen 2013). Respond by choosing red readiness and eating/sleeping more. A second rest day is better than an injury.</li>
+  <li><b>Technique over load.</b> Increase weight only by 2–5 % when you hit the top of the rep range with clean form.</li>
+  <li><b>Use a spotter/safety pins</b> for squat, bench and overhead pressing. Never test a 1-rep max.</li>
+  <li><b>Home training safety:</b> clear space; only use furniture that is sturdy (check table/chair before inverted rows, dips); use shoes with grip for jumps; pad hard floors.</li>
+  <li><b>Sleep 7–9 h</b> (Watson 2015). Sleep restriction reduced the share of weight lost as fat from 56 % to 25 % in a trial (Nedeltcheva 2010).</li>
+  <li><b>Hydration:</b> pre-hydrate and sip 150–250 ml every 15–20 min in long or hot sessions (Sawka 2007).</li></ul>
+  <details><summary>🧘 8-minute nightly mobility</summary><ul>${MOBILITY.map(m=>`<li>${m}</li>`).join('')}</ul></details></section>
+  <section class="card"><h2>📚 Research behind every design choice</h2><p class="sub">Each claim links to a PubMed search for the paper so you can verify it yourself. Evidence quality varies; the program applies these findings pragmatically.</p>
+  <div class="tw"><table><tr><th>Design decision</th><th>Source</th></tr>${REFS.map(r=>`<tr><td style="min-width:200px"><b>${esc(r[0])}</b></td><td>${esc(r[1])} <a href="${q(r[2])}" target="_blank" rel="noopener">PubMed ↗</a></td></tr>`).join('')}</table></div></section>
+  <section class="card"><h2>💾 Your data</h2><p class="sub">Everything is stored in this browser (localStorage) and the app works offline. Export a backup regularly — clearing browser data deletes it.</p>
+  <div class="row" style="margin-top:10px"><button class="btn pri" data-a="export">⬇ Export backup (.json)</button><label class="btn" style="cursor:pointer">⬆ Import backup<input type="file" accept="application/json" data-f="import" hidden></label><button class="btn danger" data-a="reset">🗑 Reset everything</button></div>
+  <p class="sub" style="margin-top:10px" id="offline">${location.protocol.startsWith('http')?'Offline cache: active after first load (service worker). You can also "Install app" from your browser menu.':'Opened as a local file: your progress IS saved (localStorage). For full offline caching/installable app, serve the folder over http — run <code>python3 -m http.server 8000</code> inside the Transform30 folder and open http://localhost:8000.'}</p></section>
+  ${dietPrecautions()}`;
+}
+
+/* ============================================================
+   EVENTS
+   ============================================================ */
+function toast(m){const t=document.createElement('div');t.className='toast';t.textContent=m;$('#toast').appendChild(t);setTimeout(()=>t.remove(),2600);}
+function go(v){view=v;history.replaceState(null,'','#'+v);render();window.scrollTo({top:0});}
+
+document.addEventListener('click',e=>{
+  const el=e.target.closest('[data-a]');if(!el)return;
+  const a=el.dataset.a,d=+el.dataset.d;
+  if(el.tagName==='A')e.preventDefault();
+  switch(a){
+   case 'nav':go(el.dataset.v);break;
+   case 'gmode':S.gmode=el.dataset.m;S.modes={};save();render();toast(S.gmode==='gym'?'Default: gym':'Default: home workouts');break;
+   case 'daymode':S.modes[d]=el.dataset.m;save();render();break;
+   case 'start':S.start=todayStr();save();selDay=null;render();toast('🚀 Day 1 starts today. Go!');break;
+   case 'prev':selDay=Math.max(1,(selDay??curDay())-1);render();break;
+   case 'next':selDay=Math.min(30,(selDay??curDay())+1);render();break;
+   case 'goto':selDay=d;view='today';history.replaceState(null,'','#today');render();window.scrollTo({top:0});break;
+   case 'set':{
+     const k=key(d,el.dataset.m),i=+el.dataset.i,j=+el.dataset.j;
+     const o=S.done[k]=S.done[k]||{};const arr=o[i]=o[i]||[];arr[j]=!arr[j];save();
+     const y=window.scrollY;render();window.scrollTo(0,y);
+     if(arr[j]&&+el.dataset.rest>0)startTimer(+el.dataset.rest);
+     break;}
+   case 'complete':S.completed[d]=!S.completed[d];save();render();if(S.completed[d])toast('🔥 Day '+d+' complete!');break;
+   case 'water':{const x=D(d);x.water=Math.max(0,(x.water||0)+ +el.dataset.v);save();const y=scrollY;render();scrollTo(0,y);break;}
+   case 'skiptimer':stopTimer();break;
+   case 'export':{const b=new Blob([JSON.stringify(S,null,2)],{type:'application/json'});const u=URL.createObjectURL(b);const l=document.createElement('a');l.href=u;l.download='transform30-backup-'+todayStr()+'.json';l.click();URL.revokeObjectURL(u);break;}
+   case 'reset':if(confirm('Delete ALL progress? This cannot be undone.')){S=defState();save();selDay=null;render();toast('Reset done');}break;
+  }
+});
+document.addEventListener('change',e=>{
+  const el=e.target,f=el.dataset.f;if(!f)return;
+  const d=+el.dataset.d,val=el.type==='checkbox'?el.checked:el.value;
+  switch(f){
+   case 'start':S.start=el.value||null;save();render();break;
+   case 'daily':{const x=D(d);x[el.dataset.k]=(el.type==='number'&&val!=='')?+val:val;save();if(['sleep','sore','energy'].includes(el.dataset.k)){const y=scrollY;render();scrollTo(0,y);}break;}
+   case 'load':{const k=key(d,el.dataset.m);(S.loads[k]=S.loads[k]||{})[el.dataset.i]=val;save();break;}
+   case 'restchk':(S.restchk[d]=S.restchk[d]||{})[el.dataset.i]=val;save();break;
+   case 'prof':S.profile[el.dataset.k]=(['sex','goal','diet'].includes(el.dataset.k))?val:+val;save();render();break;
+   case 'pb':S.pb[el.dataset.k]=el.dataset.k==='meal'?+val:val;save();render();break;
+   case 'meas':{const c=el.dataset.c,k=el.dataset.k;if(k==='weight'){D(c).weight=val===''?'':+val;}else{(S.meas[c]=S.meas[c]||{})[k]=val===''?'':+val;}save();render();break;}
+   case 'bench':{const c=el.dataset.c;(S.bench[c]=S.bench[c]||{})[el.dataset.k]=val===''?'':+val;save();render();break;}
+   case 'import':{const fl=el.files[0];if(!fl)return;const r=new FileReader();r.onload=()=>{try{const o=JSON.parse(r.result);if(!o||typeof o!=='object'||o.v!==1)throw 0;S=Object.assign(defState(),o);save();render();toast('✅ Backup imported');}catch(_){toast('❌ Invalid backup file');}};r.readAsText(fl);break;}
+  }
+});
+document.querySelectorAll('#nav button,#gmode button').forEach(b=>b.addEventListener('keydown',ev=>{if(ev.key==='Enter')b.click();}));
+window.addEventListener('hashchange',()=>{const v=location.hash.slice(1);if(['today','plan','diet','progress','guide'].includes(v)&&v!==view){view=v;render();}});
+
+/* rest timer */
+const tm={end:0,total:0,iv:null};
+function startTimer(sec){tm.total=sec;tm.end=Date.now()+sec*1000;$('#timer').classList.add('show');if(!tm.iv)tm.iv=setInterval(tick,250);tick();}
+function stopTimer(){clearInterval(tm.iv);tm.iv=null;$('#timer').classList.remove('show');}
+function tick(){
+  const left=Math.max(0,Math.ceil((tm.end-Date.now())/1000));
+  $('#tt').textContent=Math.floor(left/60)+':'+String(left%60).padStart(2,'0');
+  $('#tbar').style.width=(100-left/tm.total*100)+'%';
+  if(left<=0){beep();if(navigator.vibrate)navigator.vibrate([200,100,200]);clearInterval(tm.iv);tm.iv=null;setTimeout(()=>{if(!tm.iv)$('#timer').classList.remove('show');},1500);}
+}
+function beep(){try{const c=new (window.AudioContext||window.webkitAudioContext)(),o=c.createOscillator(),g=c.createGain();o.connect(g);g.connect(c.destination);o.frequency.value=880;g.gain.setValueAtTime(.2,c.currentTime);g.gain.exponentialRampToValueAtTime(.001,c.currentTime+.6);o.start();o.stop(c.currentTime+.6);}catch(_){}}
+
+/* PWA: manifest (inline) + service worker (needs http/https) */
+(function(){
+  try{
+    const icon="data:image/svg+xml;utf8,"+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#a45bff"/><stop offset="1" stop-color="#ff7a3d"/></linearGradient></defs><rect width="512" height="512" rx="110" fill="url(#g)"/><text x="256" y="350" font-size="300" text-anchor="middle">⚡</text></svg>');
+    const man={name:'Transform30',short_name:'Transform30',start_url:'./index.html',display:'standalone',background_color:'#0b0a14',theme_color:'#0b0a14',icons:[{src:icon,sizes:'any',type:'image/svg+xml'}]};
+    const l=document.createElement('link');l.rel='manifest';l.href=URL.createObjectURL(new Blob([JSON.stringify(man)],{type:'application/manifest+json'}));document.head.appendChild(l);
+    const ai=document.createElement('link');ai.rel='icon';ai.href=icon;document.head.appendChild(ai);
+  }catch(_){}
+  if('serviceWorker' in navigator&&location.protocol.startsWith('http')){navigator.serviceWorker.register('sw.js').catch(()=>{});}
+})();
+if(navigator.storage&&navigator.storage.persist)navigator.storage.persist().catch(()=>{});
+render();
+</script>
+</body>
+</html>
