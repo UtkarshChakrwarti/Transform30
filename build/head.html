@@ -270,8 +270,8 @@ select{appearance:none;-webkit-appearance:none;background-image:linear-gradient(
 .btn.red{background:linear-gradient(135deg, rgba(210,45,80,.85), rgba(140,20,50,.9));
   border:1px solid rgba(255,160,180,.45);border-top:1px solid rgba(255,255,255,.35);
   color:#fff;box-shadow:0 8px 24px rgba(255,77,109,.35), inset 0 1px 2px rgba(255,255,255,.25)}
-.btn.red:active{background:linear-gradient(135deg, rgba(150,25,55,.95), rgba(100,12,35,.95))}
-.btn.sm{min-height:36px;font-size:12.5px;width:auto;padding:0 12px;border-radius:0 !important;filter:saturate(.4);pointer-events:none}
+.btn.sm{min-height:36px;font-size:12.5px;width:auto;padding:0 12px;border-radius:0 !important}
+.btn:disabled,.btn[disabled]{opacity:.4;filter:grayscale(.6);pointer-events:none !important;cursor:not-allowed}
 .btn-row{display:flex;gap:8px;flex-wrap:wrap}.btn-row .btn{flex:1}
 
 /* Pills and tactical tags */
