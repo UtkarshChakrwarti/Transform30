@@ -1,5 +1,5 @@
 /* Transform30 service worker: network-first for HTML pages (immediate updates), cache-first for assets. */
-const CACHE = 'transform30-v6';
+const CACHE = 'transform30-v7';
 const ASSETS = [
   './',
   './index.html',

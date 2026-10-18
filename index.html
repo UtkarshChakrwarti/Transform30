@@ -517,7 +517,7 @@ push:{title:'Push — Chest · Shoulders · Triceps',code:'PUSH',short:'Push',
   X('Counter Triceps Extension',2,'10-15',60,'Hands on a sturdy counter/table edge, lower head toward hands.')]},
 pull:{title:'Pull — Back · Biceps · Rear Delts',code:'PULL',short:'Pull',
  gym:[
-  X('Pull-Up (assisted/weighted) or Lat Pulldown',4,'6-10',120,'Start each rep by pulling elbows to hips; full hang at the bottom.',1),
+  X('Lat Pulldown (wide or neutral grip)',4,'8-12',90,'Pull elbows down and in toward ribs; full lat stretch at top, squeeze at collarbone.',1),
   X('Barbell / Chest-Supported Row',4,'8-10',90,'Flat back, squeeze shoulder blades together at the top.',1),
   X('Seated Cable Row',3,'10-12',75,'Neutral grip; avoid leaning back to cheat.'),
   X('Face Pull',3,'15-20',45,'Rope to forehead, externally rotate at the end.'),
@@ -525,13 +525,13 @@ pull:{title:'Pull — Back · Biceps · Rear Delts',code:'PULL',short:'Pull',
   X('Incline Dumbbell Curl',3,'10-12',60,'Deep stretch at the bottom, no swinging.'),
   X('Hammer Curl',3,'10-12',60,'Neutral grip hits brachialis and forearms.')],
  home:[
-  X('Pull-Up / Chin-Up (door bar) or Towel Door Row',4,'max-2',120,'No bar? Close a door, wrap a towel around both handles, lean back and row.',1),
-  X('Backpack Bent-Over Row',4,'10-15',75,'Hinge to ~45°, backpack loaded with books/water. Squeeze back 1 s.',1),
-  X('Table / Inverted Row',3,'8-15',75,'Only under a very sturdy table. Heels on floor, body straight.'),
-  X('Prone Y-T-W Raise',3,'10-12',45,'Lie face down on floor. Lift arms into Y, T then W shapes.'),
-  X('Backpack Biceps Curl',3,'12-15',60,'Hold backpack by the handle/strap, keep elbows fixed.'),
-  X('Towel Isometric Curl',3,'20-30 s',45,'Stand on a towel, pull up on it as hard as possible without moving.'),
-  X('Superman Hold',3,'30-40 s',45,'Lift chest and legs, squeeze glutes and back; breathe steadily.')]},
+  X('Door Towel Incline Row',4,'10-15',90,'Loop a sturdy towel around door handles (or knot over door top). Lean back ~45-60°, pull chest to door driving elbows down and back.',1),
+  X('Backpack Bent-Over Row (Loaded)',4,'10-15',75,'Hinge at hips ~45°, flat back. Heavy backpack with books/water. Squeeze shoulder blades together 1 s.',1),
+  X('Table Inverted Row or Doorframe Row',3,'8-12',75,'Lie under a sturdy table and grip edge, or grip sturdy doorframe. Keep body in a straight plank, pull chest up.',1),
+  X('Prone Y-T-W Raise (Rear Delts & Traps)',3,'10-12',45,'Lie face down on floor. Lift arms in Y, T, then W shapes with thumbs pointing up; pause 1 s at peak.'),
+  X('Backpack Biceps Curl',3,'12-15',60,'Hold loaded backpack by the handle/straps. Pin elbows to sides, curl up, 3-second slow lowering.'),
+  X('Towel Isometric Biceps Curl',3,'20-30 s',45,'Stand on middle of a sturdy towel, grip ends palms-up. Pull upward at 90° elbow bend with maximum force against immovable resistance.'),
+  X('Superman Lat-Pull Hold',3,'30-40 s',45,'Lie prone, lift chest and thighs. Reach arms forward, then drive elbows back into lats as if pulling down.')]},
 legs:{title:'Legs — Quads · Glutes · Calves',code:'LEGS',short:'Legs',
  gym:[
   X('Barbell Back Squat',4,'6-8',150,'Brace the core, knees track over toes, hit at least parallel depth.',1),
@@ -601,7 +601,7 @@ post:{title:'Posterior Chain — Hamstrings · Glutes · Back',code:'POST',short
 const CYCLE=['push','pull','legs','cond','upper','post'];
 const WARM={
  push:['2 min jump rope / jumping jacks','Arm circles ×10 each way','Band-free scapular push-ups ×10','Light ramp-up set (≈50% load × 10, ≈70% × 5)'],
- pull:['2 min light cardio','Cat-cow ×10','Scapular pull-ups / dead hangs 2×20 s','Ramp-up set (≈50% × 10, ≈70% × 5)'],
+ pull:['2 min light cardio / jumping jacks','Cat-cow ×10','Doorframe scapular retractions / floor slides 2×15','Ramp-up set (≈50% load × 10, ≈70% × 5)'],
  legs:['3 min bike/brisk walk','Bodyweight squat ×15','Leg swings ×10/leg','Hip 90/90 switches ×8','Ramp-up set (≈50% × 8, ≈70% × 4)'],
  cond:['3 min easy jog / jump rope','High knees 2×20 s','World\'s-greatest-stretch ×5/side','1 progressive 20-s fast burst'],
  upper:['2 min jump rope','Shoulder dislocates with towel ×10','Push-up ×8 slow','Ramp-up set for the first lift'],
@@ -626,7 +626,7 @@ const isRest=d=>d%7===0&&d<=28;
 const phaseOf=d=>isRest(d)?null:d<=7?P[0]:d<=14?P[1]:d<=21?P[2]:P[3];
 const typeOf=d=>{if(isRest(d))return 'rest';const i=(d-1)-Math.floor((d-1)/7);return CYCLE[i%6];};
 const BENCH=[
- ['pushups','Max strict push-ups (reps)'],['pullups','Max pull-ups or inverted rows (reps)'],
+ ['pushups','Max strict push-ups (reps)'],['pullups','Max door towel rows or inverted rows (reps)'],
  ['squats','Bodyweight squats in 60 s (reps)'],['plank','Plank hold (seconds)'],['burpees','Burpees in 60 s (reps)']];
 const CHECKPOINTS=[1,8,15,22,30];
 const MEAS=[['weight','Weight (kg)'],['neck','Neck (cm)'],['chest','Chest (cm)'],['waist','Waist @ navel (cm)'],['hips','Hips (cm)'],['arm','Arm flexed (cm)'],['thigh','Thigh (cm)']];
@@ -1183,7 +1183,7 @@ function rQuests(){
   h+=`<div class="row" style="padding:0 2px 12px;border:0"><button class="btn sm" data-a="prev" ${d<=1?'disabled':''} aria-label="Previous day">‹</button>
     <div class="grow" style="text-align:center"><div class="mono glowtxt" style="font-size:15px;letter-spacing:.14em">DAY ${d} / 30</div><div class="tiny">${d===cd&&S.start?'TODAY':d<cd?'PAST GATE':'LOCKED GATE'}</div></div>
     <button class="btn sm" data-a="next" ${d>=30?'disabled':''} aria-label="Next day">›</button></div>`;
-  if(locked)h+=`<div class="note w mono">GATE LOCKED — this quest opens on Day ${d}. You may preview it below.</div>`;
+  if(locked)h+=`<div class="note w mono" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px"><span>GATE LOCKED — this quest opens on Day ${d}.</span>${d===2&&cd===1?'<button class="btn sm pri" data-a="set-today-d2" style="font-size:10px;padding:3px 10px;margin:0">SET TODAY AS DAY 2</button>':''}</div>`;
   /* penalty quest */
   const pend=pendingPenalty();
   if(pend&&d===cd){
@@ -1214,7 +1214,7 @@ function rQuests(){
       <div class="seg ${mode==='home'?'home':''}" role="group" aria-label="Training location"><button class="${mode==='gym'?'on':''}" data-a="daymode" data-m="gym" data-d="${d}">GYM MODE</button><button class="${mode==='home'?'on':''}" data-a="daymode" data-m="home" data-d="${d}">HOME MODE (NO EQUIPMENT)</button></div>
       <div class="kv" style="margin-top:12px"><span>PROGRESS</span><b>${dn}/${tot} sets · ${Math.round(dd.pct*100)}%</b></div>${bar(dd.pct,dd.pct>=.7?'g':'')}
       <div class="row" style="padding:10px 0 0;border:0;gap:6px;flex-wrap:wrap"><span class="pill o">Up to +${tot*8+p.ex.length*10+100} EXP</span><span class="pill">${p.type==='cond'?'AGI':'STR'} growth</span>${(d===1||d===30)?'<span class="pill v">Rank test day</span>':''}</div></section>`;
-    if(d===1||d===30)h+=`<div class="note i">[ASSESSMENT] <b>Rank Test:</b> record push-ups, pull-ups, squats, plank and burpees in <a href="#codex" data-a="goto-codex">Codex → Records</a>. ${d===30?'Compare with Day 1 to unlock “Beyond Limits”.':''}</div>`;
+    if(d===1||d===30)h+=`<div class="note i">[ASSESSMENT] <b>Rank Test:</b> record push-ups, rows (or pull-ups), squats, plank and burpees in <a href="#codex" data-a="goto-codex">Codex → Records</a>. ${d===30?'Compare with Day 1 to unlock “Beyond Limits”.':''}</div>`;
     /* fatigue scan */
     const rdn=p.r,lv=rdn.lvl;
     h+=`<div class="wt" style="margin:16px 4px 8px">Fatigue scan</div><div class="group"><div class="row"><span class="grow lab">Sleep last night</span><input type="number" inputmode="decimal" min="0" max="14" step="0.5" placeholder="h" data-f="daily" data-d="${d}" data-k="sleep" value="${x.sleep??''}"></div>
@@ -1666,6 +1666,10 @@ document.addEventListener('click',ev_=>{
    case 'ctab':S.codexTab=el.dataset.k;save();render();break;
    case 'gmode':S.gmode=el.dataset.m;S.modes={};save();render(true);break;
    case 'daymode':{const bf=b();S.modes[d]=el.dataset.m;save();afterChange(bf,true);render(true);break;}
+   case 'set-today-d2':{
+     const y=new Date(Date.now()-864e5);
+     S.start=y.getFullYear()+'-'+pad2(y.getMonth()+1)+'-'+pad2(y.getDate());
+     selDay=2;save();render(true);sfx('level');toast('Gate Unlocked: Today is Day 2 (Pull Day)!','g');break;}
    case 'questinfo':openQuestInfoModal(d||selDay||curDay());break;
    case 'awaken':awakenStart();break;
    case 'aw-no':closeWin();pushWin(()=>sysWin('System','<b>[SYSTEM]</b>\n\nDeclined.\n\nThe System will ask again.','<button class="btn pri" data-a="aw-again">Ask again</button>',{lock:true}));break;

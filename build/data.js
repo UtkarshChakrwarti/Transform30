@@ -20,7 +20,7 @@ push:{title:'Push — Chest · Shoulders · Triceps',code:'PUSH',short:'Push',
   X('Counter Triceps Extension',2,'10-15',60,'Hands on a sturdy counter/table edge, lower head toward hands.')]},
 pull:{title:'Pull — Back · Biceps · Rear Delts',code:'PULL',short:'Pull',
  gym:[
-  X('Pull-Up (assisted/weighted) or Lat Pulldown',4,'6-10',120,'Start each rep by pulling elbows to hips; full hang at the bottom.',1),
+  X('Lat Pulldown (wide or neutral grip)',4,'8-12',90,'Pull elbows down and in toward ribs; full lat stretch at top, squeeze at collarbone.',1),
   X('Barbell / Chest-Supported Row',4,'8-10',90,'Flat back, squeeze shoulder blades together at the top.',1),
   X('Seated Cable Row',3,'10-12',75,'Neutral grip; avoid leaning back to cheat.'),
   X('Face Pull',3,'15-20',45,'Rope to forehead, externally rotate at the end.'),
@@ -28,13 +28,13 @@ pull:{title:'Pull — Back · Biceps · Rear Delts',code:'PULL',short:'Pull',
   X('Incline Dumbbell Curl',3,'10-12',60,'Deep stretch at the bottom, no swinging.'),
   X('Hammer Curl',3,'10-12',60,'Neutral grip hits brachialis and forearms.')],
  home:[
-  X('Pull-Up / Chin-Up (door bar) or Towel Door Row',4,'max-2',120,'No bar? Close a door, wrap a towel around both handles, lean back and row.',1),
-  X('Backpack Bent-Over Row',4,'10-15',75,'Hinge to ~45°, backpack loaded with books/water. Squeeze back 1 s.',1),
-  X('Table / Inverted Row',3,'8-15',75,'Only under a very sturdy table. Heels on floor, body straight.'),
-  X('Prone Y-T-W Raise',3,'10-12',45,'Lie face down on floor. Lift arms into Y, T then W shapes.'),
-  X('Backpack Biceps Curl',3,'12-15',60,'Hold backpack by the handle/strap, keep elbows fixed.'),
-  X('Towel Isometric Curl',3,'20-30 s',45,'Stand on a towel, pull up on it as hard as possible without moving.'),
-  X('Superman Hold',3,'30-40 s',45,'Lift chest and legs, squeeze glutes and back; breathe steadily.')]},
+  X('Door Towel Incline Row',4,'10-15',90,'Loop a sturdy towel around door handles (or knot over door top). Lean back ~45-60°, pull chest to door driving elbows down and back.',1),
+  X('Backpack Bent-Over Row (Loaded)',4,'10-15',75,'Hinge at hips ~45°, flat back. Heavy backpack with books/water. Squeeze shoulder blades together 1 s.',1),
+  X('Table Inverted Row or Doorframe Row',3,'8-12',75,'Lie under a sturdy table and grip edge, or grip sturdy doorframe. Keep body in a straight plank, pull chest up.',1),
+  X('Prone Y-T-W Raise (Rear Delts & Traps)',3,'10-12',45,'Lie face down on floor. Lift arms in Y, T, then W shapes with thumbs pointing up; pause 1 s at peak.'),
+  X('Backpack Biceps Curl',3,'12-15',60,'Hold loaded backpack by the handle/straps. Pin elbows to sides, curl up, 3-second slow lowering.'),
+  X('Towel Isometric Biceps Curl',3,'20-30 s',45,'Stand on middle of a sturdy towel, grip ends palms-up. Pull upward at 90° elbow bend with maximum force against immovable resistance.'),
+  X('Superman Lat-Pull Hold',3,'30-40 s',45,'Lie prone, lift chest and thighs. Reach arms forward, then drive elbows back into lats as if pulling down.')]},
 legs:{title:'Legs — Quads · Glutes · Calves',code:'LEGS',short:'Legs',
  gym:[
   X('Barbell Back Squat',4,'6-8',150,'Brace the core, knees track over toes, hit at least parallel depth.',1),
@@ -104,7 +104,7 @@ post:{title:'Posterior Chain — Hamstrings · Glutes · Back',code:'POST',short
 const CYCLE=['push','pull','legs','cond','upper','post'];
 const WARM={
  push:['2 min jump rope / jumping jacks','Arm circles ×10 each way','Band-free scapular push-ups ×10','Light ramp-up set (≈50% load × 10, ≈70% × 5)'],
- pull:['2 min light cardio','Cat-cow ×10','Scapular pull-ups / dead hangs 2×20 s','Ramp-up set (≈50% × 10, ≈70% × 5)'],
+ pull:['2 min light cardio / jumping jacks','Cat-cow ×10','Doorframe scapular retractions / floor slides 2×15','Ramp-up set (≈50% load × 10, ≈70% × 5)'],
  legs:['3 min bike/brisk walk','Bodyweight squat ×15','Leg swings ×10/leg','Hip 90/90 switches ×8','Ramp-up set (≈50% × 8, ≈70% × 4)'],
  cond:['3 min easy jog / jump rope','High knees 2×20 s','World\'s-greatest-stretch ×5/side','1 progressive 20-s fast burst'],
  upper:['2 min jump rope','Shoulder dislocates with towel ×10','Push-up ×8 slow','Ramp-up set for the first lift'],
@@ -129,7 +129,7 @@ const isRest=d=>d%7===0&&d<=28;
 const phaseOf=d=>isRest(d)?null:d<=7?P[0]:d<=14?P[1]:d<=21?P[2]:P[3];
 const typeOf=d=>{if(isRest(d))return 'rest';const i=(d-1)-Math.floor((d-1)/7);return CYCLE[i%6];};
 const BENCH=[
- ['pushups','Max strict push-ups (reps)'],['pullups','Max pull-ups or inverted rows (reps)'],
+ ['pushups','Max strict push-ups (reps)'],['pullups','Max door towel rows or inverted rows (reps)'],
  ['squats','Bodyweight squats in 60 s (reps)'],['plank','Plank hold (seconds)'],['burpees','Burpees in 60 s (reps)']];
 const CHECKPOINTS=[1,8,15,22,30];
 const MEAS=[['weight','Weight (kg)'],['neck','Neck (cm)'],['chest','Chest (cm)'],['waist','Waist @ navel (cm)'],['hips','Hips (cm)'],['arm','Arm flexed (cm)'],['thigh','Thigh (cm)']];

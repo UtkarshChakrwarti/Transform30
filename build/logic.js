@@ -439,7 +439,7 @@ function rQuests(){
   h+=`<div class="row" style="padding:0 2px 12px;border:0"><button class="btn sm" data-a="prev" ${d<=1?'disabled':''} aria-label="Previous day">‹</button>
     <div class="grow" style="text-align:center"><div class="mono glowtxt" style="font-size:15px;letter-spacing:.14em">DAY ${d} / 30</div><div class="tiny">${d===cd&&S.start?'TODAY':d<cd?'PAST GATE':'LOCKED GATE'}</div></div>
     <button class="btn sm" data-a="next" ${d>=30?'disabled':''} aria-label="Next day">›</button></div>`;
-  if(locked)h+=`<div class="note w mono">GATE LOCKED — this quest opens on Day ${d}. You may preview it below.</div>`;
+  if(locked)h+=`<div class="note w mono" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px"><span>GATE LOCKED — this quest opens on Day ${d}.</span>${d===2&&cd===1?'<button class="btn sm pri" data-a="set-today-d2" style="font-size:10px;padding:3px 10px;margin:0">SET TODAY AS DAY 2</button>':''}</div>`;
   /* penalty quest */
   const pend=pendingPenalty();
   if(pend&&d===cd){
@@ -470,7 +470,7 @@ function rQuests(){
       <div class="seg ${mode==='home'?'home':''}" role="group" aria-label="Training location"><button class="${mode==='gym'?'on':''}" data-a="daymode" data-m="gym" data-d="${d}">GYM MODE</button><button class="${mode==='home'?'on':''}" data-a="daymode" data-m="home" data-d="${d}">HOME MODE (NO EQUIPMENT)</button></div>
       <div class="kv" style="margin-top:12px"><span>PROGRESS</span><b>${dn}/${tot} sets · ${Math.round(dd.pct*100)}%</b></div>${bar(dd.pct,dd.pct>=.7?'g':'')}
       <div class="row" style="padding:10px 0 0;border:0;gap:6px;flex-wrap:wrap"><span class="pill o">Up to +${tot*8+p.ex.length*10+100} EXP</span><span class="pill">${p.type==='cond'?'AGI':'STR'} growth</span>${(d===1||d===30)?'<span class="pill v">Rank test day</span>':''}</div></section>`;
-    if(d===1||d===30)h+=`<div class="note i">[ASSESSMENT] <b>Rank Test:</b> record push-ups, pull-ups, squats, plank and burpees in <a href="#codex" data-a="goto-codex">Codex → Records</a>. ${d===30?'Compare with Day 1 to unlock “Beyond Limits”.':''}</div>`;
+    if(d===1||d===30)h+=`<div class="note i">[ASSESSMENT] <b>Rank Test:</b> record push-ups, rows (or pull-ups), squats, plank and burpees in <a href="#codex" data-a="goto-codex">Codex → Records</a>. ${d===30?'Compare with Day 1 to unlock “Beyond Limits”.':''}</div>`;
     /* fatigue scan */
     const rdn=p.r,lv=rdn.lvl;
     h+=`<div class="wt" style="margin:16px 4px 8px">Fatigue scan</div><div class="group"><div class="row"><span class="grow lab">Sleep last night</span><input type="number" inputmode="decimal" min="0" max="14" step="0.5" placeholder="h" data-f="daily" data-d="${d}" data-k="sleep" value="${x.sleep??''}"></div>
@@ -922,6 +922,10 @@ document.addEventListener('click',ev_=>{
    case 'ctab':S.codexTab=el.dataset.k;save();render();break;
    case 'gmode':S.gmode=el.dataset.m;S.modes={};save();render(true);break;
    case 'daymode':{const bf=b();S.modes[d]=el.dataset.m;save();afterChange(bf,true);render(true);break;}
+   case 'set-today-d2':{
+     const y=new Date(Date.now()-864e5);
+     S.start=y.getFullYear()+'-'+pad2(y.getMonth()+1)+'-'+pad2(y.getDate());
+     selDay=2;save();render(true);sfx('level');toast('Gate Unlocked: Today is Day 2 (Pull Day)!','g');break;}
    case 'questinfo':openQuestInfoModal(d||selDay||curDay());break;
    case 'awaken':awakenStart();break;
    case 'aw-no':closeWin();pushWin(()=>sysWin('System','<b>[SYSTEM]</b>\n\nDeclined.\n\nThe System will ask again.','<button class="btn pri" data-a="aw-again">Ask again</button>',{lock:true}));break;

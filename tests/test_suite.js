@@ -129,6 +129,19 @@ var eHome = evalAll();
 assert(eHome.days[1].pct === 1.0, "Home mode full workout logged at 100%");
 assert(eHome.homeClear === 1, "Home mode clear recorded for 'No Excuses' achievement");
 
+// Day 2 Pull Day verification (No pull-up bar required)
+var p2H = planFor(2, 'home');
+assert(p2H.W.short === 'Pull', "Day 2 workout is Pull Training");
+var hasPullupBar = p2H.ex.some(function(ex){
+  var n = ex.n.toLowerCase();
+  return n.indexOf('pull-up bar') !== -1 || (n.indexOf('pull-up') !== -1 && n.indexOf('lat-pull') === -1);
+});
+assert(!hasPullupBar, "Day 2 Home mode has NO exercises requiring a pull-up bar");
+assert(p2H.ex[0].n === 'Door Towel Incline Row', "Day 2 Home mode starts with Door Towel Incline Row");
+assert(p2H.ex.length === 7, "Day 2 Home mode has 7 comprehensive pull exercises");
+var p2G = planFor(2, 'gym');
+assert(p2G.ex[0].n.indexOf('Lat Pulldown') !== -1, "Day 2 Gym mode uses Lat Pulldown as primary vertical pull");
+
 // --------------------------------------------------
 print("\n--- Test Suite 4: Metrics, Water Tracking & Sub-Quests ---");
 // --------------------------------------------------
